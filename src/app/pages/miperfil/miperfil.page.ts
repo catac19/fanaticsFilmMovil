@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-miperfil',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MiperfilPage implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
   }
 
+  irAEditar() {
+    this.router.navigate(['/editarperfil']);
+  }
 }

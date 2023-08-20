@@ -23,8 +23,8 @@
     </div>
     <ion-card-content>
       <ion-card-header>
-        <ion-card-title>John Doe</ion-card-title>
-        <ion-card-subtitle>john.doe@example.com</ion-card-subtitle>
+        <ion-card-title>{{ dataService.profileData.nombre }} {{ dataService.profileData.apellido }}</ion-card-title>
+        <ion-card-subtitle>{{ dataService.profileData.correo }}</ion-card-subtitle>
       </ion-card-header>
 
       <ion-list>
@@ -54,6 +54,6 @@
         </ion-item>
       </ion-list>
     </ion-card-content>
-    <ion-button>Editar</ion-button>
+    <ion-button (click)="irAEditar()">Editar</ion-button>
   </ion-card>
 </ion-content>

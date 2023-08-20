@@ -1,13 +1,67 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="false">
   <ion-toolbar>
-    <ion-title>editarperfil</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button color="dark" cauto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <img src="/assets/icon/Fanaticsfilm.png" alt="Logo">
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="fondo">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">editarperfil</ion-title>
+      <ion-title size="large">Mi Perfil</ion-title>
     </ion-toolbar>
   </ion-header>
+
+
+  <ion-card class="perfil-card">
+    <div class="perfil-image-container">
+      <ion-img class="perfil-image" src="URL_DE_LA_FOTO_DE_PERFIL"></ion-img>
+      <ion-button class="subir-foto" fill="clear">Subir Imagen / Tomar Foto</ion-button>
+    </div>
+    <ion-card-content>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-input [(ngModel)]="nombre" placeholder="Nombre"></ion-input>
+          <ion-input [(ngModel)]="apellido" placeholder="Apellido"></ion-input>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-input [(ngModel)]="correo" placeholder="Correo Electrónico"></ion-input>
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label>
+            Descripción personal:
+            <ion-textarea [(ngModel)]="descripcion" placeholder="Descripción personal"></ion-textarea>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Género Preferido:
+            <ion-input [(ngModel)]="genero" placeholder="Género Preferido"></ion-input>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Series Favoritas:
+            <ion-input [(ngModel)]="series" placeholder="Series Favoritas"></ion-input>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Películas Favoritas:
+            <ion-input [(ngModel)]="peliculas" placeholder="Películas Favoritas"></ion-input>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <!-- Botón para guardar los cambios -->
+      <ion-button (click)="guardarCambios()">Guardar Cambios</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
