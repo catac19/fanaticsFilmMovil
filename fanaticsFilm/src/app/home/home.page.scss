@@ -25,3 +25,12 @@
 #container a {
   text-decoration: none;
 }
+
+
+.fondo{
+  --background: none;
+  background: url('/assets/icon/fondo.jpg') ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
