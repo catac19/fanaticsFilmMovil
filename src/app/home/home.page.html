@@ -10,14 +10,22 @@
 </ion-header>
 
 <ion-content class="fondo" [fullscreen]="true">
-  <ion-card color="dark">
-    <ion-card-header>
-      <ion-card-title>¡Bienvenidos a Fanatics Film!</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Estamos emocionados de recibir a todos los amantes del cine y las series. En esta comunidad apasionada, tu voz es
-      fundamental. Comenta y comparte tus impresiones siempre teniendo en mente que el respeto mutuo es la clave para
-      construir un espacio cinéfilo inigualable.
-    </ion-card-content>
-  </ion-card>
+
+  <swiper-container
+  #swiper
+  (afterinit)="swiperReady()"
+  (slidechange)="swiperSlideChanged($event)"
+  [loop]="true"
+  [pagination]="true"
+  [autoplay]="false"
+  [effect]="'cards'"
+  [spacebetween]="10"
+>
+  <swiper-slide *ngFor="let image of images" class="w-fit" >
+    <div class="swiper-zoom-container">
+      <img [src]="image" />
+    </div>
+  </swiper-slide>
+</swiper-container>
+ 
 </ion-content>
