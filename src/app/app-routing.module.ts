@@ -50,6 +50,10 @@ const routes: Routes = [
     path: 'peliculasadmin',
     loadChildren: () => import('./pages/peliculasadmin/peliculasadmin.module').then( m => m.PeliculasadminPageModule)
   },
+  {
+    path: 'editarperfil',
+    loadChildren: () => import('./pages/editarperfil/editarperfil.module').then( m => m.EditarperfilPageModule)
+  },
 
 ];
 
