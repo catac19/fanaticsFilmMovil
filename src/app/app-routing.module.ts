@@ -18,6 +18,38 @@ const routes: Routes = [
     path: 'registrosesion',
     loadChildren: () => import('./pages/registrosesion/registrosesion.module').then( m => m.RegistrosesionPageModule)
   },
+  {
+    path: 'milista',
+    loadChildren: () => import('./pages/milista/milista.module').then( m => m.MilistaPageModule)
+  },
+  {
+    path: 'miperfil',
+    loadChildren: () => import('./pages/miperfil/miperfil.module').then( m => m.MiperfilPageModule)
+  },
+  {
+    path: 'peliculas',
+    loadChildren: () => import('./pages/peliculas/peliculas.module').then( m => m.PeliculasPageModule)
+  },
+  {
+    path: 'contra',
+    loadChildren: () => import('./pages/contra/contra.module').then( m => m.ContraPageModule)
+  },
+  {
+    path: 'homeadmin',
+    loadChildren: () => import('./pages/homeadmin/homeadmin.module').then( m => m.HomeadminPageModule)
+  },
+  {
+    path: 'perfiladmin',
+    loadChildren: () => import('./pages/perfiladmin/perfiladmin.module').then( m => m.PerfiladminPageModule)
+  },
+  {
+    path: 'reportados',
+    loadChildren: () => import('./pages/reportados/reportados.module').then( m => m.ReportadosPageModule)
+  },
+  {
+    path: 'peliculasadmin',
+    loadChildren: () => import('./pages/peliculasadmin/peliculasadmin.module').then( m => m.PeliculasadminPageModule)
+  },
 
 ];
 
