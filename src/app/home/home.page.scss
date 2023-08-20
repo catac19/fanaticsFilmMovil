@@ -76,3 +76,14 @@ swiper-slide img {
   height: 100%;
   object-fit: cover;
 }
+ion-footer{
+  --background: none;
+  color: white;
+  background-color: #E0E0E0;
+}
+
+
+ion-buttons {
+  justify-content: space-between;  /* Esto distribuirá los botones a lo largo de la barra con espacio igual entre ellos */
+}
+

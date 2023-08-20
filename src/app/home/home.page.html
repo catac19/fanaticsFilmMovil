@@ -1,11 +1,16 @@
 <ion-header [translucent]="false">
   <ion-toolbar>
-    <ion-buttons slot="start">
+   <!--  <ion-buttons slot="start">
       <ion-menu-button color="dark" cauto-hide="false"></ion-menu-button>
-    </ion-buttons>
+    </ion-buttons> -->
     <ion-title>
       <img src="/assets/icon/Fanaticsfilm.png" alt="Logo">
     </ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon slot="icon-only" name="search" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
@@ -16,7 +21,7 @@
   (afterinit)="swiperReady()"
   (slidechange)="swiperSlideChanged($event)"
   [loop]="true"
-  [pagination]="true"
+  [pagination]="true"  
   [autoplay]="false"
   [effect]="'cards'"
   [spacebetween]="10"
@@ -27,5 +32,25 @@
     </div>
   </swiper-slide>
 </swiper-container>
- 
+
+
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+  <ion-buttons >
+    <ion-button >
+      <ion-icon slot="icon-only" name="home" color="dark"></ion-icon>
+    </ion-button>
+      <ion-button fill="clear" >
+        <ion-icon slot="icon-only" name="search" color="dark"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="heart" color="dark"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle" color="dark"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
