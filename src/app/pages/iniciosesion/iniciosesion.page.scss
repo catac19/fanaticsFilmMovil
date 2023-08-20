@@ -5,3 +5,10 @@
     background-repeat: no-repeat;
     background-position: center center;
   }
+
+.container {
+    margin: 50% auto; /* Esto centra el contenedor verticalmente */
+    background-color: white;
+    padding: 20px;
+    width: 80%;
+}
