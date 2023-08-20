@@ -1,7 +1,0 @@
-{
-  "name": "fanaticsFilm",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
