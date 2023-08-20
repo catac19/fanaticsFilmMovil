@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'iniciosesion',
     loadChildren: () => import('./pages/iniciosesion/iniciosesion.module').then( m => m.IniciosesionPageModule)
   },
+  {
+    path: 'registrosesion',
+    loadChildren: () => import('./pages/registrosesion/registrosesion.module').then( m => m.RegistrosesionPageModule)
+  },
 
 ];
 
