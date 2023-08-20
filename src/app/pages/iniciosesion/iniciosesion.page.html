@@ -1,12 +1,15 @@
-<ion-header class="fondo">
-  <ion-toolbar>
-    <ion-title>Iniciar Sesión</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="fondo">
   <div class="container">
     <!-- Contenido del formulario de inicio de sesión -->
+    <ion-item>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input type="text" [(ngModel)]="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="login()">Iniciar Sesión</ion-button>
   </div>
 </ion-content>
         

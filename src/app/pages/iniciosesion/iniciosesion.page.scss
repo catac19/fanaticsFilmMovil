@@ -6,9 +6,13 @@
     background-position: center center;
   }
 
-.container {
+  ion-content {
+    --background: transparent;
+  }
+  
+  .container {
+    margin: 40% auto; /* Esto centra el contenedor verticalmente */
     background-color: white;
-    padding: 20px;
+    padding: 50px;
     width: 80%;
-    max-width: 400px; /* Limitamos el ancho máximo del contenedor */
-}
+  }
