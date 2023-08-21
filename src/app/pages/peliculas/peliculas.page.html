@@ -1,15 +1,68 @@
 
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="fondo">
   <ion-card>
-    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+    <img alt="Silhouette of mountains" src="/assets/icon/pelicula1.jpg" />
     <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      <ion-card-title>Shang-Chi y la leyenda de los diez anillos</ion-card-title>
     </ion-card-header>
   
     <ion-card-content>
-      Here's a small text description for the card content. Nothing more, nothing less.
+      Shang-Chi es un superhéroe de Marvel, maestro de artes marciales. Descubre su pasado oscuro y se enfrenta a la organización de su padre. Película de acción y aventuras que explora identidad y legado.
+    </ion-card-content>
+
+    <div class="button-container">
+      <ion-button fill="clear" slot="" class="heart-button">
+        <ion-icon slot="icon-only" name="heart-outline" color="dark"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" slot="" class="heart-button">
+        <ion-icon slot="icon-only" name="bookmark-outline" color="dark"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-icon name="person-circle-outline" slot="start" color="dark"></ion-icon>
+        <ion-input placeholder="Comentar"></ion-input>
+        <ion-button fill="clear" slot="end">
+          <ion-icon slot="icon-only" name="send-outline" color="dark"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>
+          <h2>
+            <ion-icon name="person-circle-outline" color="dark"></ion-icon>
+            Usuario
+          </h2>
+          <p>Sus asombrosas habilidades en artes marciales se entrelazan con una trama de secretos familiares y misterios ancestrales. Los espectaculares combates y efectos visuales se fusionan con una exploración profunda de la identidad y el compromiso. Una experiencia cinematográfica emocionante y reflexiva.</p>
+        </ion-label>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button>
+        <ion-icon slot="icon-only" name="home" color="dark"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
+        <ion-icon slot="icon-only" name="search" color="dark"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="heart" color="dark"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle" color="dark"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+
