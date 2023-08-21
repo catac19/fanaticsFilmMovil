@@ -29,7 +29,8 @@
 
 .fondo{
   --background: none;
-  background: url('/assets/icon/fondoblanco.jpg') ;
+  background-color: #1B2631  ;
+/*   background: url('/assets/icon/fondoblanco.jpg') ; */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -38,7 +39,7 @@
 ion-toolbar{
   --background: none;
   color: white;
-  background-color: #BDC3C7 ;
+  background-color: #F4F6F7 ;
 }
 ion-title img {
   max-width: 120px; /* Ancho máximo de la imagen */
@@ -79,11 +80,23 @@ swiper-slide img {
 ion-footer{
   --background: none;
   color: white;
-  background-color: #BDC3C7;
+  background-color: #F4F6F7;
 }
 
 
 ion-buttons {
   justify-content: space-between;  /* Esto distribuirá los botones a lo largo de la barra con espacio igual entre ellos */
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.list-inline-item {
+  flex: 0 0 auto;
+  width: 130px;
+  height: 190px;
 }
 

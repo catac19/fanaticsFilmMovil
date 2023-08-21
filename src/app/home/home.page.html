@@ -1,6 +1,6 @@
 <ion-header [translucent]="false">
   <ion-toolbar>
-   <!--  <ion-buttons slot="start">
+    <!--  <ion-buttons slot="start">
       <ion-menu-button color="dark" cauto-hide="false"></ion-menu-button>
     </ion-buttons> -->
     <ion-title>
@@ -16,32 +16,61 @@
 
 <ion-content class="fondo" [fullscreen]="true">
 
-  <swiper-container
-  #swiper
-  (afterinit)="swiperReady()"
-  (slidechange)="swiperSlideChanged($event)"
-  [loop]="true"
-  [pagination]="true"  
-  [autoplay]="false"
-  [effect]="'cards'"
-  [spacebetween]="10"
->
-  <swiper-slide *ngFor="let image of images" class="w-fit" >
-    <div class="swiper-zoom-container">
-      <img [src]="image" />
-    </div>
-  </swiper-slide>
-</swiper-container>
+  <swiper-container #swiper (afterinit)="swiperReady()" (slidechange)="swiperSlideChanged($event)" [loop]="true"
+    [pagination]="true" [autoplay]="false" [effect]="'cards'" [spacebetween]="10">
+    <swiper-slide *ngFor="let image of images" class="w-fit">
+      <div class="swiper-zoom-container">
+        <img [src]="image" />
+      </div>
+    </swiper-slide>
+  </swiper-container>
+
+  <h2 style="color: aliceblue; margin-left: 3%;">Peliculas</h2>
+  <div class="scroll-container" id="peliculasSemana">
+    <ion-card class="list-inline-item" >
+        <img src="/assets/icon/poster1.jpg" alt="Póster 1" style="max-width: 130px; height: auto; ">
+    </ion-card>
+    <ion-card class="list-inline-item" style="margin-left: 1%;">
+        <img src="/assets/icon/poster2.jpg" alt="Póster 2" style="max-width: 130px; height: auto;">
+    </ion-card>
+    <ion-card class="list-inline-item" style="margin-left: 1%;">
+        <img src="/assets/icon/poster3.jpg" alt="Póster 3" style="max-width: 130px; height: auto;">
+    </ion-card>
+    <ion-card class="list-inline-item" style="margin-left: 1%;">
+        <img src="/assets/icon/poster4.jpeg" alt="Póster 4" style="max-width: 130px; height: auto;">
+    </ion-card>
+    <ion-card class="list-inline-item" style="margin-left: 1%;">
+        <img src="/assets/icon/poster5.jpg" alt="Póster 5" style="max-width: 130px; height: auto;">
+    </ion-card>
+  </div>
+  <h2 style="color: aliceblue; margin-left: 3%;">Series</h2>
+  <div class="scroll-container" >
+    <ion-card class="list-inline-item" >
+        <img src="/assets/icon/poster6.jpg" alt="Póster 6" style="max-width: 130px; height: auto; ">
+    </ion-card>
+    <ion-card class="list-inline-item" style="margin-left: 1%;">
+        <img src="/assets/icon/poster7.jpg" alt="Póster 7" style="max-width: 130px; height: auto;">
+    </ion-card>
+    <ion-card class="list-inline-item" style="margin-left: 1%;">
+        <img src="/assets/icon/poster8.jpg" alt="Póster 8" style="max-width: 130px; height: auto;">
+    </ion-card>
+    <ion-card class="list-inline-item" style="margin-left: 1%;">
+        <img src="/assets/icon/poster9.jpg" alt="Póster 9" style="max-width: 130px; height: auto;">
+    </ion-card>
+    <ion-card class="list-inline-item" style="margin-left: 1%;">
+        <img src="/assets/icon/poster10.jpg" alt="Póster 10" style="max-width: 130px; height: auto;">
+    </ion-card>
+  </div>
 
 
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-  <ion-buttons >
-    <ion-button >
-      <ion-icon slot="icon-only" name="home" color="dark"></ion-icon>
-    </ion-button>
-      <ion-button fill="clear" >
+    <ion-buttons>
+      <ion-button>
+        <ion-icon slot="icon-only" name="home" color="dark"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
         <ion-icon slot="icon-only" name="search" color="dark"></ion-icon>
       </ion-button>
       <ion-button>
