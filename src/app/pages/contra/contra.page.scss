@@ -1,0 +1,19 @@
+.fondo{
+    --background: none;
+    background: url('/assets/icon/fondo.jpg') ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  ion-content {
+    --background: transparent;
+  }
+  
+  .container {
+    margin: 40% auto; /* Esto centra el contenedor verticalmente */
+    background-color: white;
+    padding: 50px;
+    width: 80%;
+    border-radius: 10px;
+  }
