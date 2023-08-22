@@ -70,6 +70,30 @@ const routes: Routes = [
     path: 'pelicula5',
     loadChildren: () => import('./pages/pelicula5/pelicula5.module').then( m => m.Pelicula5PageModule)
   },
+  {
+    path: 'serie1',
+    loadChildren: () => import('./pages/serie1/serie1.module').then( m => m.Serie1PageModule)
+  },
+  {
+    path: 'serie2',
+    loadChildren: () => import('./pages/serie2/serie2.module').then( m => m.Serie2PageModule)
+  },
+  {
+    path: 'serie3',
+    loadChildren: () => import('./pages/serie3/serie3.module').then( m => m.Serie3PageModule)
+  },
+  {
+    path: 'serie4',
+    loadChildren: () => import('./pages/serie4/serie4.module').then( m => m.Serie4PageModule)
+  },
+  {
+    path: 'serie5',
+    loadChildren: () => import('./pages/serie5/serie5.module').then( m => m.Serie5PageModule)
+  },
+  {
+    path: 'buscar',
+    loadChildren: () => import('./pages/buscar/buscar.module').then( m => m.BuscarPageModule)
+  },
 
 ];
 
