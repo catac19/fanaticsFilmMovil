@@ -27,20 +27,30 @@
 
   <h2 style="color: aliceblue; margin-left: 3%;">Peliculas</h2>
   <div class="scroll-container" id="peliculasSemana">
-    <ion-card class="list-inline-item" >
-        <img src="/assets/icon/poster1.jpg" alt="Póster 1" style="max-width: 130px; height: auto; ">
+    <ion-card class="list-inline-item">
+      <a [routerLink]="['/peliculas']"> <!-- Cambio aquí -->
+        <img src="/assets/icon/poster1.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
+      </a>
     </ion-card>
     <ion-card class="list-inline-item" style="margin-left: 1%;">
-        <img src="/assets/icon/poster2.jpg" alt="Póster 2" style="max-width: 130px; height: auto;">
+      <a [routerLink]="['/pelicula2']"> <!-- Cambio aquí -->
+        <img src="/assets/icon/poster2.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
+      </a>
     </ion-card>
     <ion-card class="list-inline-item" style="margin-left: 1%;">
-        <img src="/assets/icon/poster3.jpg" alt="Póster 3" style="max-width: 130px; height: auto;">
+      <a [routerLink]="['/pelicula3']"> <!-- Cambio aquí -->
+        <img src="/assets/icon/poster3.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
+      </a>
     </ion-card>
     <ion-card class="list-inline-item" style="margin-left: 1%;">
-        <img src="/assets/icon/poster4.jpeg" alt="Póster 4" style="max-width: 130px; height: auto;">
+      <a [routerLink]="['/pelicula4']"> <!-- Cambio aquí -->
+        <img src="/assets/icon/poster4.jpeg" alt="Póster 1" style="max-width: 130px; height: auto;">
+      </a>
     </ion-card>
     <ion-card class="list-inline-item" style="margin-left: 1%;">
-        <img src="/assets/icon/poster5.jpg" alt="Póster 5" style="max-width: 130px; height: auto;">
+      <a [routerLink]="['/pelicula5']"> <!-- Cambio aquí -->
+        <img src="/assets/icon/poster5.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
+      </a>
     </ion-card>
   </div>
   <h2 style="color: aliceblue; margin-left: 3%;">Series</h2>
@@ -61,15 +71,34 @@
         <img src="/assets/icon/poster10.jpg" alt="Póster 10" style="max-width: 130px; height: auto;">
     </ion-card>
   </div>
-
+  <h2 style="color: aliceblue; margin-left: 3%;">Series y Peliculas por Estrenar</h2>
+  <div class="scroll-container" >
+    <ion-card class="list-inline-item" >
+        <img src="/assets/icon/estreno1.jpg" alt="estreno" style="max-width: 130px; height: auto; ">
+    </ion-card>
+    <ion-card class="list-inline-item" style="margin-left: 1%;">
+        <img src="/assets/icon/estreno2.jpg" alt="estreno" style="max-width: 130px; height: auto;">
+    </ion-card>
+    <ion-card class="list-inline-item" style="margin-left: 1%;">
+        <img src="/assets/icon/estreno3.jpeg" alt="estreno" style="max-width: 130px; height: auto;">
+    </ion-card>
+    <ion-card class="list-inline-item" style="margin-left: 1%;">
+        <img src="/assets/icon/estreno4.jpg" alt="estreno" style="max-width: 130px; height: auto;">
+    </ion-card>
+    <ion-card class="list-inline-item" style="margin-left: 1%;">
+        <img src="/assets/icon/estreno5.jpg" alt="estreno" style="max-width: 130px; height: auto;">
+    </ion-card>
+  </div>
 
 </ion-content>
 <ion-footer>
   <ion-toolbar>
     <ion-buttons>
+      <a [routerLink]="['/home']"> 
       <ion-button>
         <ion-icon slot="icon-only" name="home" color="dark"></ion-icon>
       </ion-button>
+      </a>
       <ion-button fill="clear">
         <ion-icon slot="icon-only" name="search" color="dark"></ion-icon>
       </ion-button>

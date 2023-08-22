@@ -54,6 +54,22 @@ const routes: Routes = [
     path: 'editarperfil',
     loadChildren: () => import('./pages/editarperfil/editarperfil.module').then( m => m.EditarperfilPageModule)
   },
+  {
+    path: 'pelicula2',
+    loadChildren: () => import('./pages/pelicula2/pelicula2.module').then( m => m.Pelicula2PageModule)
+  },
+  {
+    path: 'pelicula3',
+    loadChildren: () => import('./pages/pelicula3/pelicula3.module').then( m => m.Pelicula3PageModule)
+  },
+  {
+    path: 'pelicula4',
+    loadChildren: () => import('./pages/pelicula4/pelicula4.module').then( m => m.Pelicula4PageModule)
+  },
+  {
+    path: 'pelicula5',
+    loadChildren: () => import('./pages/pelicula5/pelicula5.module').then( m => m.Pelicula5PageModule)
+  },
 
 ];
 
