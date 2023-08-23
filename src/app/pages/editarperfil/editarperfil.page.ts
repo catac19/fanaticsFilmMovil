@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -18,7 +18,8 @@ export class EditarperfilPage implements OnInit {
   peliculas: string = '';
 
   constructor(
-    private toastController: ToastController
+    private toastController: ToastController,
+    private alertController: AlertController
   ) { }
 
   subirFoto() {
@@ -27,16 +28,17 @@ export class EditarperfilPage implements OnInit {
   }
 
   async guardarCambios() {
-    // Lógica para guardar los cambios en los datos del perfil
-    // Puedes realizar acciones como enviar los datos al servidor, actualizar la base de datos, etc.
+    if (!this.nombre || !this.apellido || !this.correo || !this.genero) {
+      const alert = await this.alertController.create({
+        header: 'campos incompletos',
+        message: 'por favor, completa todos los campos',
+        buttons:['aceptar']
+      });
 
-    // Muestra un mensaje de éxito usando un toast
-    const toast = await this.toastController.create({
-      message: 'Cambios guardados correctamente',
-      duration: 2000,
-      position: 'bottom',
-    });
-    await toast.present();
+      await alert.present();
+      return;
+      
+    }
   }
 
   ngOnInit() {
