@@ -57,3 +57,29 @@
     <ion-button (click)="irAEditar()">Editar</ion-button>
   </ion-card>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons>
+      <a [routerLink]="['/home']"> 
+      <ion-button>
+        <ion-icon slot="icon-only" name="home" color="dark"></ion-icon>
+      </ion-button>
+      </a>
+      <a [routerLink]="['/buscar']"> 
+      <ion-button fill="clear">
+        <ion-icon slot="icon-only" name="search" color="dark"></ion-icon>
+      </ion-button>
+      </a>
+      <a [routerLink]="['/milista']"> 
+      <ion-button>
+        <ion-icon slot="icon-only" name="heart" color="dark"></ion-icon>
+      </ion-button>
+      </a>
+      <a [routerLink]="['/miperfil']"> 
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle" color="dark"></ion-icon>
+      </ion-button>
+      </a>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
