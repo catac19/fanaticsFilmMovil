@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrosesionPageRoutingModule } from './registrosesion-routing.module';
 
 import { RegistrosesionPage } from './registrosesion.page';
@@ -13,7 +13,8 @@ import { RegistrosesionPage } from './registrosesion.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    RegistrosesionPageRoutingModule
+    RegistrosesionPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [RegistrosesionPage]
 })
