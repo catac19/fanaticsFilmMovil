@@ -34,7 +34,7 @@
     </ion-card>
     <ion-card class="list-inline-item" style="margin-left: 1%; ">
       <a [routerLink]="['/pelicula2']"> <!-- Cambio aquí -->
-        <img src="/assets/icon/poster2.jpg" alt="Póster 1" style="max-width: 130px; height: auto; view-transition-name: preview;">
+        <img src="/assets/icon/poster2.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
       </a>
     </ion-card>
     <ion-card class="list-inline-item" style="margin-left: 1%;">
@@ -109,16 +109,21 @@
         <ion-icon slot="icon-only" name="home" color="dark"></ion-icon>
       </ion-button>
       </a>
+      <a [routerLink]="['/buscar']"> 
       <ion-button fill="clear">
         <ion-icon slot="icon-only" name="search" color="dark"></ion-icon>
       </ion-button>
+      </a>
+      <a [routerLink]="['/milista']"> 
       <ion-button>
         <ion-icon slot="icon-only" name="heart" color="dark"></ion-icon>
       </ion-button>
+      </a>
+      <a [routerLink]="['/miperfil']"> 
       <ion-button>
         <ion-icon slot="icon-only" name="person-circle" color="dark"></ion-icon>
       </ion-button>
-
+      </a>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
