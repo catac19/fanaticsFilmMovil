@@ -13,8 +13,8 @@ import { IniciosesionPage } from './iniciosesion.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    IniciosesionPageRoutingModule
+    IniciosesionPageRoutingModule,
   ],
-  declarations: [IniciosesionPage]
+  declarations: [IniciosesionPage],
 })
 export class IniciosesionPageModule {}

@@ -24,7 +24,7 @@
       </ion-item>
       </div>
       <div>
-        <ion-label  position="floating">Conofirmar contraseña:</ion-label>
+        <ion-label  position="floating">Confirmar contraseña:</ion-label>
         <ion-item>
         <ion-input formControlName="passwordConfirm" type="password" placeholder="Confirmar contraseña"/>
         <ion-icon name="eye" ></ion-icon>
@@ -42,10 +42,11 @@
       </div>
       <div *ngIf="myForm.get('password')!.errors && myForm.get('password')!.dirty">
         <p *ngIf="myForm.get('password')!.hasError('required')" >Campo contraseña requerido</p>
-        <div *ngIf="myForm.get('password')!.hasError('pattern')" >
-          <p><ion-icon name="alert-circle-outline"></ion-icon>La contraseña debe tener largo minimo 5</p>
-          <p><ion-icon name="alert-circle-outline"></ion-icon>La contraseña debe tener largo maximo 8</p>
-          <p><ion-icon name="alert-circle-outline"></ion-icon>La contraseña debe tener al menos 1 caracter especial.</p>
+        <div *ngIf="myForm.get('password')!.hasError('pattern')" class="alerta" >
+          <div class="aviso"><ion-icon name="alert-circle-outline" color="danger" size="medium"></ion-icon>Largo minimo 5</div>
+          <div class="aviso"><ion-icon name="alert-circle-outline" color="danger"></ion-icon>Largo maximo 8</div>
+          <div class="aviso"><ion-icon name="alert-circle-outline" color="danger"></ion-icon>1 caracter especial.</div>
+          <!-- <div class="aviso"><ion-icon name="alert-circle-outline" color="danger" size="medium"></ion-icon></div> -->
         </div>
    
         

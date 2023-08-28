@@ -12,3 +12,17 @@
   width: 80%;
   border-radius: 10px;
 }
+.alerta{
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+}
+.aviso {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.aviso ion-icon {
+  font-size: 20px;
+}
