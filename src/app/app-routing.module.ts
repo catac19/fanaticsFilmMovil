@@ -8,7 +8,7 @@ const routes: Routes = [
       import('./home/home.module').then((m) => m.HomePageModule),
   },
   {
-    path: '**',
+    path: '*',
     redirectTo: 'not-found',
     pathMatch: 'full',
   },
