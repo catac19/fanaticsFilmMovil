@@ -25,46 +25,55 @@
     <ion-card-content>
       <ion-list lines="none">
         <ion-item>
-          <ion-label>
-            Nombre:
-            <ion-textarea [(ngModel)]="nombre" placeholder="Nombre"></ion-textarea>
+          <ion-label position="floating">
+            Nombre <ion-text color="danger">(Obligatorio)</ion-text>: 
+            
           </ion-label>
+          <ion-input [(ngModel)]="nombre"  placeholder="Nombre">
+              
+          </ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>
-            Apellido:
-            <ion-textarea [(ngModel)]="apellido" placeholder="Apellido"></ion-textarea>
+          <ion-label position="floating">
+            Apellido <ion-text color="danger">(Obligatorio)</ion-text>:
+            
           </ion-label>
+          <ion-input [(ngModel)]="apellido" placeholder="Apellido"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>
-            Correo:
-            <ion-textarea [(ngModel)]="correo" placeholder="Correo"></ion-textarea>
+          <ion-label position="floating">
+            Correo <ion-text color="danger">(Obligatorio)</ion-text>:
+            
           </ion-label>
+          <ion-input [(ngModel)]="correo" placeholder="Correo"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>
+          <ion-label position="floating">
             Descripción personal:
-            <ion-textarea [(ngModel)]="descripcion" placeholder="Descripción personal"></ion-textarea>
+           
           </ion-label>
+          <ion-textarea [(ngModel)]="descripcion" placeholder="Descripción personal"></ion-textarea>
         </ion-item>
         <ion-item>
-          <ion-label>
+          <ion-label position="floating">
             Género Preferido:
-            <ion-input [(ngModel)]="genero" placeholder="Género Preferido"></ion-input>
+            
           </ion-label>
+          <ion-input [(ngModel)]="genero" placeholder="Género Preferido"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>
+          <ion-label position="floating">
             Series Favoritas:
-            <ion-input [(ngModel)]="series" placeholder="Series Favoritas"></ion-input>
-          </ion-label>
+            
+          </ion-label >
+          <ion-input [(ngModel)]="series" placeholder="Series Favoritas"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>
+          <ion-label position="floating">
             Películas Favoritas:
-            <ion-input [(ngModel)]="peliculas" placeholder="Películas Favoritas"></ion-input>
+           
           </ion-label>
+          <ion-input [(ngModel)]="peliculas" placeholder="Películas Favoritas"></ion-input>
         </ion-item>
       </ion-list>
 
