@@ -12,6 +12,7 @@ export class HomePage implements OnInit {
   @ViewChild('swiper', { static: false })
   swiperRef: ElementRef | undefined;
   swiper?: Swiper;
+  
 
   images: string[] = [];
 
