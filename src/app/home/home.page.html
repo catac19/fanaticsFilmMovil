@@ -27,59 +27,25 @@
 
   <h2 style="color: aliceblue; margin-left: 3%;">Peliculas</h2>
   <div class="scroll-container" id="peliculasSemana">
-    <ion-card class="list-inline-item">
-      <a [routerLink]="['/peliculas']"> <!-- Cambio aquí -->
-        <img src="/assets/icon/poster1.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
-      </a>
-    </ion-card>
-    <ion-card class="list-inline-item" style="margin-left: 1%; ">
-      <a [routerLink]="['/pelicula2']"> <!-- Cambio aquí -->
-        <img src="/assets/icon/poster2.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
-      </a>
-    </ion-card>
-    <ion-card class="list-inline-item" style="margin-left: 1%;">
-      <a [routerLink]="['/pelicula3']"> <!-- Cambio aquí -->
-        <img src="/assets/icon/poster3.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
-      </a>
-    </ion-card>
-    <ion-card class="list-inline-item" style="margin-left: 1%;">
-      <a [routerLink]="['/pelicula4']"> <!-- Cambio aquí -->
-        <img src="/assets/icon/poster4.jpeg" alt="Póster 1" style="max-width: 130px; height: auto;">
-      </a>
-    </ion-card>
-    <ion-card class="list-inline-item" style="margin-left: 1%;">
-      <a [routerLink]="['/pelicula5']"> <!-- Cambio aquí -->
-        <img src="/assets/icon/poster5.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
-      </a>
-    </ion-card>
+    <div *ngFor="let item of keysPeliculas()">
+      <ion-card class="list-inline-item" >
+        <a [routerLink]="['/peliculas/'+item]"> <!-- Cambio aquí -->
+          <img src={{TodasPeliculas[item].banner}} alt="Póster 1" style="max-width: 130px; height: auto;">
+        </a>
+      </ion-card>
+    </div>
+   
   </div>
   <h2 style="color: aliceblue; margin-left: 3%;">Series</h2>
   <div class="scroll-container" >
-    <ion-card class="list-inline-item" >
-      <a [routerLink]="['/serie1']"> <!-- Cambio aquí -->
-        <img src="/assets/icon/poster6.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
-      </a>
-    </ion-card>
-    <ion-card class="list-inline-item" style="margin-left: 1%;">
-      <a [routerLink]="['/serie2']"> <!-- Cambio aquí -->
-        <img src="/assets/icon/poster7.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
-      </a>
-    </ion-card>
-    <ion-card class="list-inline-item" style="margin-left: 1%;">
-      <a [routerLink]="['/serie3']"> <!-- Cambio aquí -->
-        <img src="/assets/icon/poster8.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
-      </a>
-    </ion-card>
-    <ion-card class="list-inline-item" style="margin-left: 1%;">
-      <a [routerLink]="['/serie4']"> <!-- Cambio aquí -->
-        <img src="/assets/icon/poster9.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
-      </a>
-    </ion-card>
-    <ion-card class="list-inline-item" style="margin-left: 1%;">
-      <a [routerLink]="['/serie5']"> <!-- Cambio aquí -->
-        <img src="/assets/icon/poster10.jpg" alt="Póster 1" style="max-width: 130px; height: auto;">
-      </a>
-    </ion-card>
+    <div *ngFor="let item of keysSeries()">
+      <ion-card class="list-inline-item" >
+        <a [routerLink]="['/serie/'+item]"> <!-- Cambio aquí -->
+          <img src={{TodasSeries[item].banner}} alt="Póster 1" style="max-width: 130px; height: auto;">
+        </a>
+      </ion-card>
+    </div>
+    
   </div>
   <h2 style="color: aliceblue; margin-left: 3%;">Series y Peliculas por Estrenar</h2>
   <div class="scroll-container" >
@@ -101,29 +67,3 @@
   </div>
 
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-buttons>
-      <a [routerLink]="['/home']"> 
-      <ion-button>
-        <ion-icon slot="icon-only" name="home" color="dark"></ion-icon>
-      </ion-button>
-      </a>
-      <a [routerLink]="['/buscar']"> 
-      <ion-button fill="clear">
-        <ion-icon slot="icon-only" name="search" color="dark"></ion-icon>
-      </ion-button>
-      </a>
-      <a [routerLink]="['/milista']"> 
-      <ion-button>
-        <ion-icon slot="icon-only" name="heart" color="dark"></ion-icon>
-      </ion-button>
-      </a>
-      <a [routerLink]="['/miperfil']"> 
-      <ion-button>
-        <ion-icon slot="icon-only" name="person-circle" color="dark"></ion-icon>
-      </ion-button>
-      </a>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>

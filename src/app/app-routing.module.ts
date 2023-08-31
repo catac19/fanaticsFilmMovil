@@ -13,7 +13,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'iniciosesion',
+    path: '',
     loadChildren: () =>
       import('./pages/iniciosesion/iniciosesion.module').then(
         (m) => m.IniciosesionPageModule
@@ -39,7 +39,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'peliculas',
+    path: 'peliculas/:id',
     loadChildren: () =>
       import('./pages/peliculas/peliculas.module').then(
         (m) => m.PeliculasPageModule
@@ -85,59 +85,13 @@ const routes: Routes = [
         (m) => m.EditarperfilPageModule
       ),
   },
+
   {
-    path: 'pelicula2',
+    path: 'serie/:id',
     loadChildren: () =>
-      import('./pages/pelicula2/pelicula2.module').then(
-        (m) => m.Pelicula2PageModule
-      ),
+      import('./pages/serie/serie.module').then((m) => m.SeriePageModule),
   },
-  {
-    path: 'pelicula3',
-    loadChildren: () =>
-      import('./pages/pelicula3/pelicula3.module').then(
-        (m) => m.Pelicula3PageModule
-      ),
-  },
-  {
-    path: 'pelicula4',
-    loadChildren: () =>
-      import('./pages/pelicula4/pelicula4.module').then(
-        (m) => m.Pelicula4PageModule
-      ),
-  },
-  {
-    path: 'pelicula5',
-    loadChildren: () =>
-      import('./pages/pelicula5/pelicula5.module').then(
-        (m) => m.Pelicula5PageModule
-      ),
-  },
-  {
-    path: 'serie1',
-    loadChildren: () =>
-      import('./pages/serie1/serie1.module').then((m) => m.Serie1PageModule),
-  },
-  {
-    path: 'serie2',
-    loadChildren: () =>
-      import('./pages/serie2/serie2.module').then((m) => m.Serie2PageModule),
-  },
-  {
-    path: 'serie3',
-    loadChildren: () =>
-      import('./pages/serie3/serie3.module').then((m) => m.Serie3PageModule),
-  },
-  {
-    path: 'serie4',
-    loadChildren: () =>
-      import('./pages/serie4/serie4.module').then((m) => m.Serie4PageModule),
-  },
-  {
-    path: 'serie5',
-    loadChildren: () =>
-      import('./pages/serie5/serie5.module').then((m) => m.Serie5PageModule),
-  },
+
   {
     path: 'buscar',
     loadChildren: () =>
