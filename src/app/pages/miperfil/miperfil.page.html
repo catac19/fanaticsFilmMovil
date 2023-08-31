@@ -54,6 +54,8 @@
         </ion-item>
       </ion-list>
     </ion-card-content>
-    <ion-button (click)="irAEditar()">Editar</ion-button>
+    <ion-button #button (click)="pulseButton()" [routerLink]="['/editarperfil']">Editar</ion-button>
+
+
   </ion-card>
 </ion-content>
