@@ -26,11 +26,7 @@ export class HomePage implements OnInit {
   @ViewChild('swiper', { static: false })
   swiperRef: ElementRef | undefined;
   swiper?: Swiper;
-<<<<<<< HEAD
-=======
-  
 
->>>>>>> 2fd3f210377ae00a4a42e234290c26ac7f5787e3
   images: string[] = [];
   TodasSeries: Tipo = Series;
   TodasPeliculas: Tipo = Peliculas;
