@@ -9,6 +9,11 @@
   ion-content {
     --background: transparent;
   }
+  .login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
   .container {
     margin: 40% auto; /* Esto centra el contenedor verticalmente */

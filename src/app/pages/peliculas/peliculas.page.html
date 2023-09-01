@@ -1,6 +1,7 @@
 
 
-<ion-content [fullscreen]="true" class="fondo">
+<ion-content [fullscreen]="true" class="fondo"
+*ngIf="titulo !== ''">
   <ion-card>
     <img alt="Silhouette of mountains" src={{img}} />
     <ion-card-header>
@@ -47,5 +48,15 @@
     
   </ion-card>
 </ion-content>
-
+<ion-content [fullscreen]="true" class="fondo" *ngIf="titulo === ''" >
+  <ion-card>
+    <ion-card-header class="container '.\
+      notfound">
+      <mat-icon aria-hidden="false" aria-label="Example info icon" fontIcon="info"></mat-icon>
+      <ion-card-title>Pelicula no encontrada</ion-card-title>
+    </ion-card-header>
+  
+  
+  </ion-card>
+</ion-content>
 

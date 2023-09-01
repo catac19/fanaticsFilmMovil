@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { SeriePageRoutingModule } from './serie-routing.module';
+import { MatIconModule } from '@angular/material/icon';
 
 import { SeriePage } from './serie.page';
 import { CorazonComponent } from '../../components/corazon/corazon.component';
@@ -15,6 +16,7 @@ import { CorazonComponent } from '../../components/corazon/corazon.component';
     IonicModule,
     SeriePageRoutingModule,
     CorazonComponent,
+    MatIconModule,
   ],
   declarations: [SeriePage],
 })

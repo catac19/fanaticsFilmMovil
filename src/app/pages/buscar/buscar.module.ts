@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { IonicModule } from '@ionic/angular';
-
 import { BuscarPageRoutingModule } from './buscar-routing.module';
 
 import { BuscarPage } from './buscar.page';
@@ -13,8 +12,9 @@ import { BuscarPage } from './buscar.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    BuscarPageRoutingModule
+    BuscarPageRoutingModule,
+    MatAutocompleteModule,
   ],
-  declarations: [BuscarPage]
+  declarations: [BuscarPage],
 })
 export class BuscarPageModule {}

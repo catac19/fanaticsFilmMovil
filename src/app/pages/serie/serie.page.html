@@ -28,25 +28,13 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
-  <ion-card>
-    <div *ngFor="let comentario of comentarios">
-      
-      <ion-card-content>
-        <ion-item>
-          <ion-icon name="person-circle-outline" color="dark" size="large" style="margin-right: 10px; margin-bottom: 47%;"></ion-icon>
-          <ion-label>
-            <h2>Usuario {{comentario.usuario}}</h2>
-            <p style="margin-top: 5%;">{{comentario.desc}}</p>
-          </ion-label>
-        </ion-item>
-      </ion-card-content>
-    </div>
-    
-  </ion-card>
+  
 </ion-content>
 <ion-content [fullscreen]="true" class="fondo" *ngIf="titulo === ''" >
   <ion-card>
-    <ion-card-header>
+    <ion-card-header class="container '.\
+      notfound">
+      <mat-icon aria-hidden="false" aria-label="Example info icon" fontIcon="info"></mat-icon>
       <ion-card-title>Serie no encontrada</ion-card-title>
     </ion-card-header>
   

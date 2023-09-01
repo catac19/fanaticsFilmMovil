@@ -35,4 +35,13 @@
   ion-buttons {
     justify-content: space-between;  /* Esto distribuirá los botones a lo largo de la barra con espacio igual entre ellos */
   }
+  .notfound{
+    
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
   

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PeliculasPageRoutingModule } from './peliculas-routing.module';
-
+import { MatIconModule } from '@angular/material/icon';
 import { PeliculasPage } from './peliculas.page';
 
 @NgModule({
@@ -13,8 +13,9 @@ import { PeliculasPage } from './peliculas.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PeliculasPageRoutingModule
+    PeliculasPageRoutingModule,
+    MatIconModule,
   ],
-  declarations: [PeliculasPage]
+  declarations: [PeliculasPage],
 })
 export class PeliculasPageModule {}
