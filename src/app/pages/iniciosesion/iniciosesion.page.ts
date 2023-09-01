@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController  } from '@ionic/angular';
 import { Usuarios } from './usuarios';
 import {
   FormGroup,
@@ -72,6 +72,9 @@ export class IniciosesionPage implements OnInit {
     //   toast.present();
     // }
   }
-
+  async contra() {
+    this.router.navigate(['/contra']);
+  }
+  
   ngOnInit() {}
 }
