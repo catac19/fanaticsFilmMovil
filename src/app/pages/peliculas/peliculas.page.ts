@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./peliculas.page.scss'],
 })
 export class PeliculasPage implements OnInit {
+  like: string = 'danger';
   titulo: string = '';
   desc: string = '';
   img: string = '';
