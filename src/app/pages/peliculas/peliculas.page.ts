@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Peliculas } from 'src/app/assets/peliculas';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router'; // Importa Router
+
 @Component({
   selector: 'app-peliculas',
   templateUrl: './peliculas.page.html',
@@ -12,7 +13,8 @@ export class PeliculasPage implements OnInit {
   desc: string = '';
   img: string = '';
   comentarios!: Array<any>;
-  constructor(private route: ActivatedRoute) {}
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -25,4 +27,10 @@ export class PeliculasPage implements OnInit {
       this.comentarios = comentarios;
     });
   }
+
+  goBack() {
+    // Utiliza el servicio Router para navegar hacia atrás
+    this.router.navigate(['/home']); // Reemplaza '/' con la ruta deseada para volver atrás
+  }
 }
+

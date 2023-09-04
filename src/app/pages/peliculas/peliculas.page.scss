@@ -15,6 +15,28 @@
     background-repeat: no-repeat;
     background-position: center center;
   }
+  /* Aumenta el tamaño del icono */
+.large-icon {
+  font-size: 32px; /* Ajusta el tamaño según tus preferencias */
+}
+
+/* Aumenta el tamaño del botón */
+.large-button {
+  font-size: 24px; /* Ajusta el tamaño según tus preferencias */
+  padding: 12px 16px; /* Ajusta el espacio interno del botón según tus preferencias */
+}
+
+  ion-toolbar{
+    --background: none;
+    color: white;
+    background-color: #F4F6F7 ;
+  }
+  ion-title img {
+    max-width: 120px; /* Ancho máximo de la imagen */
+    height: auto; /* Altura ajustada automáticamente */
+    display: block; /* Para centrar la imagen horizontalmente */
+    margin: 0 auto; /* Margen automático en los lados para centrar verticalmente */
+  }
   ion-card ion-label {
     white-space: normal;
     word-wrap: break-word;

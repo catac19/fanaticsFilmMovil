@@ -1,4 +1,15 @@
 
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons slot="start" class="large-button" (click)="goBack()">
+      <ion-icon name="arrow-back-circle-outline" color="dark" class="large-icon"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      <img src="/assets/icon/Fanaticsfilm.png" alt="Logo" style="margin-left: 19%;">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
 
 <ion-content [fullscreen]="true" class="fondo"
 *ngIf="titulo !== ''">

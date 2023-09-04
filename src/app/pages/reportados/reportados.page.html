@@ -1,13 +1,36 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="false">
   <ion-toolbar>
-    <ion-title>reportados</ion-title>
+     <ion-buttons slot="start">
+      <ion-menu-button color="dark" cauto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <img src="/assets/icon/Fanaticsfilm.png" alt="Logo" style="margin-left: 22%;">
+    </ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon slot="icon-only" name="search" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">reportados</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="fondo">
+
+  <ion-card *ngFor="let usuario of usuarios">
+    <ion-card-content>
+      <ion-list>
+       
+        <ion-item>
+          <ion-thumbnail slot="start" class="ion-avatar">
+            <img [src]="usuario.imagen" alt="{{ usuario.nombre }} Image" style="border-radius: 100%;" />
+          </ion-thumbnail>
+          <ion-label>{{ usuario.nombre }}</ion-label>
+        </ion-item>
+        <h2 style="margin-left: 25%; margin-top: 5%;">{{ usuario.comentario }}</h2>
+        <ion-button fill="clear" slot="end" style="margin-left: 87%;" >
+          <ion-icon name="trash-bin" color="dark"></ion-icon>
+        </ion-button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

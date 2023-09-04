@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router  } from '@angular/router';
 import { Series } from '../../assets/series';
 @Component({
   selector: 'app-serie',
@@ -12,7 +12,7 @@ export class SeriePage implements OnInit {
   desc: string = '';
   img: string = '';
   comentarios!: Array<any>;
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
   async likeButton() {}
 
   ngOnInit() {
@@ -24,5 +24,9 @@ export class SeriePage implements OnInit {
       this.img = img;
       this.comentarios = comentarios;
     });
+  }
+  goBack() {
+    // Utiliza el servicio Router para navegar hacia atrás
+    this.router.navigate(['/home']); // Reemplaza '/' con la ruta deseada para volver atrás
   }
 }

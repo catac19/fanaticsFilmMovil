@@ -8,8 +8,8 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class NavegacionComponent implements OnInit {
   routerEvents: any;
-  mostrar: boolean = false;
-  Rutas = ['/', '/registrosesion', '/homeadmin'];
+  mostrar: boolean = true;
+  Rutas = ['/', '/registrosesion', '/homeadmin', '/peliculasadmin', '/reportes'];
   constructor(private router: Router) {
     this.routerEvents = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
