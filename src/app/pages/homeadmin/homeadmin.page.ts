@@ -12,6 +12,7 @@ export class HomeadminPage implements OnInit {
     { id: 3, nombre: 'Ross Lynch', imagen: '/assets/icon/ross.jpg' },
     // Agrega más usuarios aquí
   ];
+  currentDate: Date = new Date(); 
   constructor() { }
 
   ngOnInit() {

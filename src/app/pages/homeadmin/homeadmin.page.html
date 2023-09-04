@@ -47,5 +47,12 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
-  
+  <ion-card style="background-color: black;">
+    <ion-card-header>
+      <ion-card-title style="margin-left: 27%; font-size: 180%; color: white;">Fecha Actual</ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="margin-left: 22%;">
+      {{ currentDate | date:'fullDate' }}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
