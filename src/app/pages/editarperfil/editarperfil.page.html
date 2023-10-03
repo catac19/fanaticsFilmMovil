@@ -19,8 +19,9 @@
 
   <ion-card class="perfil-card">
     <div class="perfil-image-container">
-      <ion-img class="perfil-image" src="/assets/icon/shrek.jpg"></ion-img>
-      <ion-button class="subir-foto" fill="clear" (click)="subirFoto()">Subir Imagen/Tomar Foto</ion-button>
+      <ion-img class="perfil-image" src="imagenCapturada" *ngIf="imagenCapturada" ></ion-img>
+      <ion-button class="subir-foto" fill="clear" (click)="seleccionarFoto()">Subir Imagen</ion-button>
+      <ion-button class="subir-foto" fill="clear" (click)="tomarFoto()">Tomar Imagen</ion-button>
     </div>
     <ion-card-content>
       <ion-list lines="none">

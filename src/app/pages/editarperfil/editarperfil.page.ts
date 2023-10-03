@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+
 
 @Component({
   selector: 'app-editarperfil',
@@ -8,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./editarperfil.page.scss'],
 })
 export class EditarperfilPage implements OnInit {
+  imagenCapturada: string | null = null;
   nombre: string = 'Admin';
   apellido: string = 'istrador';
   correo: string = 'admin@yahoo.cl';
@@ -22,9 +25,28 @@ export class EditarperfilPage implements OnInit {
     private alertController: AlertController
   ) {}
 
-  subirFoto() {
-    // Lógica para subir una foto o tomar una foto usando la cámara
-    // Puedes usar this.camera.getPicture() si tienes instalado el plugin de la cámara
+  async tomarFoto() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.DataUrl, // Puedes usar 'Base64', 'DataUrl' o 'Uri'
+      source: CameraSource.Camera, // Esto abrirá la cámara
+    });
+  
+    // 'image.dataUrl' contiene la imagen capturada en formato Data URL
+    // Puedes mostrarla en una imagen o subirla a un servidor aquí
+  }
+  
+  async seleccionarFoto() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Photos, // Esto abrirá la galería de fotos
+    });
+  
+    // 'image.dataUrl' contiene la imagen seleccionada en formato Data URL
+    // Puedes mostrarla en una imagen o subirla a un servidor aquí
   }
 
   async guardarCambios() {
