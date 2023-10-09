@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { Permissions, PermissionType } from '@capacitor/permissions';
+import { Camera, CameraResultType, CameraSource, PermissionStatus } from '@capacitor/camera';
 
 
 @Component({
@@ -11,7 +10,7 @@ import { Permissions, PermissionType } from '@capacitor/permissions';
   styleUrls: ['./editarperfil.page.scss'],
 })
 export class EditarperfilPage implements OnInit {
-  imagenCapturada: string | null = null;
+  imagenCapturada: string | undefined = undefined;
   nombre: string = 'Admin';
   apellido: string = 'istrador';
   correo: string = 'admin@yahoo.cl';
@@ -26,42 +25,40 @@ export class EditarperfilPage implements OnInit {
     private alertController: AlertController
   ) {}
 
-  async tomarFoto() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.DataUrl, // Puedes usar 'Base64', 'DataUrl' o 'Uri'
-      source: CameraSource.Camera, // Esto abrirá la cámara
-    });
-  
-    // 'image.dataUrl' contiene la imagen capturada en formato Data URL
-    // Puedes mostrarla en una imagen o subirla a un servidor aquí
-  }
-  
-  async seleccionarFoto() {
-    await this.checkPermissions();
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.DataUrl,
-      source: CameraSource.Photos, // Esto abrirá la galería de fotos
-    });
-    
-  
-    // 'image.dataUrl' contiene la imagen seleccionada en formato Data URL
-    // Puedes mostrarla en una imagen o subirla a un servidor aquí
-  }
 
-
-// FUNCIONES PARA PERMISOS
-  async checkPermissions() {
-    const result = await Permissions.query({
-      name: PermissionType.Camera,
-    });
-    if (result.state !== 'granted') {
-      await Permissions.request({ name: PermissionType.Camera });
+  
+   loadPhoto = async () => {
+    const permissionStatus = await this.checkAndRequestPermissions();
+  
+    if (permissionStatus.camera === 'granted' || permissionStatus.photos === 'granted') {
+      try {
+        const image = await Camera.getPhoto({
+          quality: 90,
+          allowEditing: false,
+          resultType: CameraResultType.Uri,
+          source: CameraSource.Prompt
+        });
+  
+        const imageUrl = image.webPath;
+        this.imagenCapturada = imageUrl;
+      } catch (error) {
+        console.error("Error loading image", error);
+      }
+    } else {
+      console.error("Permissions are not granted");
     }
-  }
+  };
+  
+   checkAndRequestPermissions = async () => {
+    const status = await Camera.checkPermissions();
+    if (status.camera === 'prompt' || status.photos === 'prompt') {
+      const permissionStatus = await Camera.requestPermissions();
+      return permissionStatus;
+    }
+    return status;
+  };
+  
+
 
 
 
