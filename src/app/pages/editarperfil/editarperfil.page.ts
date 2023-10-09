@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Permissions, PermissionType } from '@capacitor/permissions';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class EditarperfilPage implements OnInit {
   async tomarFoto() {
     const image = await Camera.getPhoto({
       quality: 90,
-      allowEditing: true,
+      allowEditing: false,
       resultType: CameraResultType.DataUrl, // Puedes usar 'Base64', 'DataUrl' o 'Uri'
       source: CameraSource.Camera, // Esto abrirá la cámara
     });
@@ -38,16 +39,31 @@ export class EditarperfilPage implements OnInit {
   }
   
   async seleccionarFoto() {
+    await this.checkPermissions();
     const image = await Camera.getPhoto({
       quality: 90,
-      allowEditing: true,
+      allowEditing: false,
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Photos, // Esto abrirá la galería de fotos
     });
+    
   
     // 'image.dataUrl' contiene la imagen seleccionada en formato Data URL
     // Puedes mostrarla en una imagen o subirla a un servidor aquí
   }
+
+
+// FUNCIONES PARA PERMISOS
+  async checkPermissions() {
+    const result = await Permissions.query({
+      name: PermissionType.Camera,
+    });
+    if (result.state !== 'granted') {
+      await Permissions.request({ name: PermissionType.Camera });
+    }
+  }
+
+
 
   async guardarCambios() {
     if (!this.nombre || !this.apellido || !this.correo) {
@@ -56,6 +72,8 @@ export class EditarperfilPage implements OnInit {
         message: 'por favor, completa todos los campos',
         buttons: ['aceptar'],
       });
+
+      
 
       await alert.present();
       return;
