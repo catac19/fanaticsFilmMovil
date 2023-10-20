@@ -16,21 +16,34 @@
 
 <ion-content [fullscreen]="true" class="fondo">
 
-  <ion-card *ngFor="let usuario of usuarios">
+  <ion-card *ngFor="let comentario of comentarios">
     <ion-card-content>
       <ion-list>
        
         <ion-item>
-          <ion-thumbnail slot="start" class="ion-avatar">
-            <img [src]="usuario.imagen" alt="{{ usuario.nombre }} Image" style="border-radius: 100%;" />
-          </ion-thumbnail>
-          <ion-label>{{ usuario.nombre }}</ion-label>
+          
+          <ion-label>{{ comentario.nombre }} - Serie</ion-label>
         </ion-item>
-        <h2 style="margin-left: 25%; margin-top: 5%;">{{ usuario.comentario }}</h2>
+        <h2 style="margin-left: 25%; margin-top: 5%;">{{ comentario.comentarios }}</h2>
         <ion-button fill="clear" slot="end" style="margin-left: 87%;" >
           <ion-icon name="trash-bin" color="dark"></ion-icon>
         </ion-button>
       </ion-list>
-    </ion-card-content>
+    </ion-card-content> 
+  </ion-card>
+  <ion-card *ngFor="let comentario of comentariosPeliculas">
+    <ion-card-content>
+      <ion-list>
+       
+        <ion-item>
+          
+          <ion-label>{{ comentario.nombre }} - Pelicula</ion-label>
+        </ion-item>
+        <h2 style="margin-left: 25%; margin-top: 5%;">{{ comentario.comentarios }}</h2>
+        <ion-button fill="clear" slot="end" style="margin-left: 87%;" >
+          <ion-icon name="trash-bin" color="dark"></ion-icon>
+        </ion-button>
+      </ion-list>
+    </ion-card-content> 
   </ion-card>
 </ion-content>

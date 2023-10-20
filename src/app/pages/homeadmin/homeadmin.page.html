@@ -30,7 +30,7 @@
       <ion-card-title style="margin-left: 17%; font-size: 180%; color: white;">Usuarios Registrados</ion-card-title>
     </ion-card-header>
   </ion-card>
-  <ion-card *ngFor="let usuario of usuarios">
+  <ion-card *ngFor="let usuario of users">
     <ion-card-content>
       <ion-list>
         <ion-item>
@@ -40,7 +40,7 @@
           
           <ion-label>{{ usuario.nombre }}</ion-label>
           
-          <ion-button fill="clear" slot="end" >
+          <ion-button fill="clear" slot="end" (click)="deleteUsuario(usuario.id)"  >
             <ion-icon name="trash-bin" color="dark"></ion-icon>
           </ion-button>
         </ion-item>

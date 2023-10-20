@@ -19,26 +19,31 @@ import { AnimationController, IonCard } from '@ionic/angular';
 export class CorazonComponent implements OnInit {
   @Input() titulo!: string;
   @Input() tipo!: string;
+  @Input() id!: number;
   like: boolean = false;
   constructor(private database: DatabaseService) {}
   async Initializate() {
     const user = localStorage.getItem('user');
     if (user) {
       const parsedUser = JSON.parse(user);
-      const idDatos = parsedUser.idDatos || '';
-      this.database.GetFavoritesSeries(idDatos, this.tipo).then((resp) => {
-        console.log(resp);
-
-        resp = JSON.parse(resp);
-        console.log(resp);
-
-        if (resp.length > 0) {
-          resp.forEach((element: any) => {
-            if (element === this.titulo) {
+      const idDatos = parsedUser.email || '';
+      if (this.tipo == 'peliculas') {
+        this.database.getMegustasPeliculas(idDatos).then((resp) => {
+          console.log(resp);
+          resp.forEach((element) => {
+            if (element == this.id.toString()) {
               this.like = true;
             }
           });
-        }
+        });
+      }
+      this.database.getMegustas(idDatos).then((resp) => {
+        console.log(resp);
+        resp.forEach((element) => {
+          if (element == this.id.toString()) {
+            this.like = true;
+          }
+        });
       });
     }
   }
@@ -48,15 +53,39 @@ export class CorazonComponent implements OnInit {
       const user = localStorage.getItem('user');
       if (user) {
         const parsedUser = JSON.parse(user);
-        const idDatos = parsedUser.idDatos || '';
-        this.database.AddFavoritesSeries(idDatos, this.titulo, this.tipo);
+        const idDatos = parsedUser.email || '';
+        if (this.tipo == 'peliculas') {
+          this.database.AddFavoritesPeliculas(
+            idDatos,
+            this.id.toString(),
+            this.tipo
+          );
+        } else {
+          this.database.AddFavoritesSeries(
+            idDatos,
+            this.id.toString(),
+            this.tipo
+          );
+        }
       }
     } else {
       const user = localStorage.getItem('user');
       if (user) {
         const parsedUser = JSON.parse(user);
-        const idDatos = parsedUser.idDatos || '';
-        this.database.DeleteFavoritesSeries(idDatos, this.titulo, this.tipo);
+        const idDatos = parsedUser.email || '';
+        if (this.tipo == 'peliculas') {
+          this.database.DeleteFavoritesPeliculas(
+            idDatos,
+            this.id.toString(),
+            this.tipo
+          );
+        } else {
+          this.database.DeleteFavoritesSeries(
+            idDatos,
+            this.id.toString(),
+            this.tipo
+          );
+        }
       }
     }
     console.log(this.titulo);

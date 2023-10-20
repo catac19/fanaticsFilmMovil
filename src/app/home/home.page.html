@@ -32,7 +32,11 @@
     <div *ngFor="let item of peliculas">
       <ion-card class="list-inline-item" >
 
-        <a [routerLink]="['/peliculas/'+item]"> <!-- Cambio aquí -->
+        <a [routerLink]="['/peliculas/'+item]" [queryParams]="item" > <!-- Cambio aquí -->
+         
+          <div class="swiper-zoom-container">
+            <img [src]="item.imagen" />
+          </div>
           <!-- <img src={{TodasPeliculas[item].banner}} alt="Póster 1" style="max-width: 130px; height: auto;"> -->
         </a>
       </ion-card>
@@ -44,13 +48,14 @@
 
   <div class="scroll-container" >
     <div *ngFor="let item of series">
-      <ion-card class="list-inline-item" >
-        <a [routerLink]="['/serie/'+item]">
+       <ion-card class="list-inline-item" >
+
+        <a [routerLink]="['/serie/'+item]" [queryParams]="item" > <!-- Cambio aquí -->
+         
           <div class="swiper-zoom-container">
             <img [src]="item.imagen" />
           </div>
-           <!-- Cambio aquí -->
-          <!-- <img src={{TodasSeries[item].banner}} alt="Póster 1" style="max-width: 130px; height: auto;"> -->
+          <!-- <img src={{TodasPeliculas[item].banner}} alt="Póster 1" style="max-width: 130px; height: auto;"> -->
         </a>
       </ion-card>
     </div>

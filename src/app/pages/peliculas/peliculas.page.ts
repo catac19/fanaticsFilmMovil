@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Peliculas } from 'src/app/assets/peliculas';
 import { ActivatedRoute, Router } from '@angular/router'; // Importa Router
+import { DatabaseService } from 'src/app/services/db.service';
 
 @Component({
   selector: 'app-peliculas',
@@ -12,20 +13,48 @@ export class PeliculasPage implements OnInit {
   titulo: string = '';
   desc: string = '';
   img: string = '';
+  id?: number;
   comentarios!: Array<any>;
+  comentario: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private databse: DatabaseService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      const id = params['id'];
-      console.log(id);
-      const { titulo, img, desc, comentarios } = Peliculas[id];
-      this.titulo = titulo;
-      this.desc = desc;
-      this.img = img;
-      this.comentarios = comentarios;
+    this.databse.comentarios.subscribe((resp) => {
+      console.log(JSON.stringify(resp), 'resp');
+      this.comentarios = resp;
     });
+    this.route.queryParams.subscribe((params) => {
+      console.log(params['imagen'], 'paramsssss');
+      this.titulo = params['nombre'];
+      this.desc = params['descripcion'];
+      this.img = params['imagen'];
+      if (params['imagen'].includes('fakepath')) {
+        let imagen = params['imagen'].replace('C:\\fakepath\\', '');
+        this.img =
+          'http://192.168.1.86:8100/_capacitor_file_/storage/emulated/0/Download/' +
+          imagen;
+      } else {
+        this.img = params['imagen'];
+      }
+      this.id = params['id'];
+      this.databse.getComentariosPelicula(params['id']).then((resp: any[]) => {
+        console.log(resp, 'resp');
+        this.comentarios = resp || [];
+      });
+      // this.comentarios = params['imagen'];;
+    });
+  }
+  async comentar() {
+    const user = localStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      this.databse.ComentarPelicula(parsedUser.email, this.id, this.comentario);
+    }
   }
 
   goBack() {
@@ -33,4 +62,3 @@ export class PeliculasPage implements OnInit {
     this.router.navigate(['/home']); // Reemplaza '/' con la ruta deseada para volver atrás
   }
 }
-

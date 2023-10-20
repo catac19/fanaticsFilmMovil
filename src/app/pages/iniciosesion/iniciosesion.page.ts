@@ -69,9 +69,11 @@ export class IniciosesionPage implements OnInit {
     if (resp.length > 0) {
       this.onLogin = false;
       console.log('resp', resp[0]);
+      localStorage.removeItem('user');
       localStorage.setItem('user', JSON.stringify(resp[0]));
       setTimeout(() => {
         this.router.navigate(['/home']);
+        this.onLogin = true;
       }, 3000);
     } else {
       const toast = await this.toastController.create({

@@ -76,18 +76,52 @@ export class HomePage implements OnInit {
   async ngOnInit(): Promise<void> {
     this.database.series.subscribe((res) => {
       console.log(JSON.stringify(res));
-      this.series = res;
+
+      let items = [];
+      res.forEach(async (element) => {
+        let item = await this.database.getSeriebyId(element.id);
+        console.log(JSON.stringify(item), 'item');
+        item.imagen = item.imagen.replace('C:\\fakepath\\', '');
+        item.imagen =
+          'http://192.168.1.86:8100/_capacitor_file_/storage/emulated/0/Download/' +
+          item.imagen;
+        items.push(item);
+      });
+      this.series = items;
+
+      this.haveSeries = true;
     });
     this.database.peliculas.subscribe((res) => {
-      console.log(res);
-      this.peliculas = res;
+      let items = [];
+
+      res.forEach(async (element) => {
+        let item = await this.database.getPeliculasbyId(element.id);
+        console.log(JSON.stringify(item), 'item');
+        item.imagen = item.imagen.replace('C:\\fakepath\\', '');
+        item.imagen =
+          'http://192.168.1.86:8100/_capacitor_file_/storage/emulated/0/Download/' +
+          item.imagen;
+
+        items.push(item);
+      });
+      this.peliculas = items;
+      this.havePeliculas = true;
     });
     this.database.GetSeries().then((res) => {
       if (Array.isArray(res) && res.length > 0) {
         console.log(res);
         this.haveSeries = true;
-
-        this.series = res;
+        let items = [];
+        res.forEach(async (element) => {
+          let item = await this.database.getSeriebyId(element.id);
+          console.log(JSON.stringify(item), 'item');
+          item.imagen = item.imagen.replace('C:\\fakepath\\', '');
+          item.imagen =
+            'http://192.168.1.86:8100/_capacitor_file_/storage/emulated/0/Download/' +
+            item.imagen;
+          items.push(item);
+        });
+        this.series = items;
       } else {
         this.series = [];
       }
@@ -95,7 +129,19 @@ export class HomePage implements OnInit {
     this.database.GetPeliculas().then((res) => {
       if (Array.isArray(res) && res.length > 0) {
         console.log(res);
-        this.peliculas = res;
+
+        let items = [];
+        res.forEach(async (element) => {
+          let item = await this.database.getPeliculasbyId(element.id);
+          console.log(JSON.stringify(item), 'item');
+          item.imagen = item.imagen.replace('C:\\fakepath\\', '');
+          item.imagen =
+            'http://192.168.1.86:8100/_capacitor_file_/storage/emulated/0/Download/' +
+            item.imagen;
+
+          items.push(item);
+        });
+        this.peliculas = items;
         this.havePeliculas = true;
       } else {
         this.peliculas = [];

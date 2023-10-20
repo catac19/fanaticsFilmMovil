@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Series, serie } from '../../assets/series';
+import { DatabaseService } from 'src/app/services/db.service';
 @Component({
   selector: 'app-serie',
   templateUrl: './serie.page.html',
@@ -11,20 +12,69 @@ export class SeriePage implements OnInit {
   titulo: string = '';
   desc: string = '';
   img: string = '';
-  serie: serie | undefined;
+  id?: number;
   comentarios!: Array<any>;
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  comentario: string = '';
+  constructor(
+    private databse: DatabaseService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
   async likeButton() {}
-
-  ngOnInit() {
-    this.route.params.subscribe((params) => {
-      const id = params['id'];
-      const { titulo, img, desc, banner, comentarios } = Series[id];
-      this.titulo = titulo;
-      this.desc = desc;
-      this.img = img;
-      this.comentarios = comentarios;
+  onWindowFocus(event: Event): void {
+    this.comentario = '';
+    this.route.queryParams.subscribe((params) => {
+      console.log(params['nombre'], 'paramsssss');
+      this.titulo = params['nombre'];
+      this.desc = params['descripcion'];
+      if (params['imagen'].includes('fakepath')) {
+        let imagen = params['imagen'].replace('C:\\fakepath\\', '');
+        this.img =
+          'http://192.168.1.86:8100/_capacitor_file_/storage/emulated/0/Download/' +
+          imagen;
+      } else {
+        this.img = params['imagen'];
+      }
+      this.id = params['id'];
+      this.databse.getComentariosSerie(params['id']).then((resp: any[]) => {
+        console.log(resp, 'resp');
+        this.comentarios = resp || [];
+      });
+      // this.comentarios = params['imagen'];;
     });
+  }
+  ngOnInit() {
+    this.databse.comentarios.subscribe((resp) => {
+      console.log(JSON.stringify(resp), 'resp');
+      this.comentarios = resp;
+    });
+    this.route.queryParams.subscribe((params) => {
+      console.log(params['nombre'], 'paramsssss');
+      this.titulo = params['nombre'];
+      this.desc = params['descripcion'];
+      if (params['imagen'].includes('fakepath')) {
+        let imagen = params['imagen'].replace('C:\\fakepath\\', '');
+        this.img =
+          'http://192.168.1.86:8100/_capacitor_file_/storage/emulated/0/Download/' +
+          imagen;
+      } else {
+        this.img = params['imagen'];
+      }
+      this.id = params['id'];
+      this.databse.getComentariosSerie(params['id']).then((resp: any[]) => {
+        console.log(resp, 'resp');
+        this.comentarios = resp || [];
+      });
+      // this.comentarios = params['imagen'];;
+    });
+  }
+  async comentar() {
+    const user = localStorage.getItem('user');
+    console.log(user);
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      this.databse.ComentarSerie(parsedUser.email, this.id, this.comentario);
+    }
   }
   goBack() {
     // Utiliza el servicio Router para navegar hacia atrás

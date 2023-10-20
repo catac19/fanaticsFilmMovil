@@ -22,7 +22,7 @@
     </ion-card-content>
 
     <div class="button-container">
-      <app-corazon [titulo]="titulo" tipo="series"  ></app-corazon>
+      <app-corazon [titulo]="titulo" tipo="series" [id]="id"    ></app-corazon>
       <ion-button fill="clear" slot="" class="heart-button">
         <ion-icon slot="icon-only" name="bookmark-outline" color="dark"></ion-icon>
       </ion-button>
@@ -32,8 +32,8 @@
     <ion-card-content>
       <ion-item>
         <ion-icon name="person-circle-outline" size="large" slot="start" color="dark"></ion-icon>
-        <ion-input placeholder="Comentar"></ion-input>
-        <ion-button fill="clear" slot="end">
+        <ion-input placeholder="Comentar" [(ngModel)]="comentario" ></ion-input>
+        <ion-button fill="clear" slot="end" (click)="comentar()">
           <ion-icon slot="icon-only" name="send-outline" color="dark"></ion-icon>
         </ion-button>
       </ion-item>
@@ -47,7 +47,7 @@
           <ion-icon name="person-circle-outline" color="dark" size="large" style="margin-right: 10px; margin-bottom: 47%;"></ion-icon>
           <ion-label>
             <h2>Usuario {{comentario.usuario}}</h2>
-            <p style="margin-top: 5%;">{{comentario.desc}}</p>
+            <p style="margin-top: 5%;">{{comentario.comentarios}}</p>
           </ion-label>
         </ion-item>
       </ion-card-content>

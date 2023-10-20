@@ -73,6 +73,7 @@ export class RegistrosesionPage implements OnInit {
     );
     if (agregar) {
       console.log('Usuario agregado');
+      localStorage.removeItem('user');
       localStorage.setItem(
         'user',
         JSON.stringify({

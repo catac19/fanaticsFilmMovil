@@ -21,7 +21,7 @@ function hashCode(s: string): string {
   return h.toString(16);
 }
 
-const DB_USERS = 'myuserdb88';
+const DB_USERS = 'myuserdb36';
 
 export interface User {
   id: number;
@@ -40,7 +40,14 @@ export class DatabaseService {
   public series = new Subject<any>();
   public peliculas = new Subject<any>();
   public usuario = new Subject<any>();
-
+  public comentarios = new Subject<any>();
+  public TodosComentariosSeries = new Subject<any>();
+  public TodosComentariosPeliculas = new Subject<any>();
+  public megustas = new Subject<any>();
+  public megustasSeries = new Subject<any>();
+  public megustasPeliculas = new Subject<any>();
+  public admin = new Subject<any>();
+  public usuarios = new Subject<any>();
   constructor() {}
 
   async initializPligin() {
@@ -66,7 +73,9 @@ export class DatabaseService {
         EDAD INTEGER NOT NULL,
         SeriesFavoritas TEXT ,
         PeliculasFavoritas TEXT,
-        imagen TEXT
+        imagen TEXT,
+        megustasPeliculas TEXT,
+        megustasSeries TEXT
         );`;
       const schema2 = `CREATE TABLE IF NOT EXISTS DatosUsuarios (
         id INTEGER PRIMARY KEY NOT NULL,
@@ -86,6 +95,20 @@ export class DatabaseService {
           imagen TEXT
 
         )`;
+      const schema5 = `CREATE TABLE IF NOT EXISTS ComentariosPelicula (
+          id INTEGER PRIMARY KEY NOT NULL,
+          idUsuario TEXT NOT NULL,
+          idContenido INTEGER NOT NULL,
+          comentarios TEXT NOT NULL
+
+        )`;
+      const schema6 = `CREATE TABLE IF NOT EXISTS ComentariosSeries (
+          id INTEGER PRIMARY KEY NOT NULL,
+          idUsuario TEXT NOT NULL,
+          idContenido INTEGER NOT NULL,
+          comentarios TEXT NOT NULL
+
+        )`;
       const schema4 = `CREATE TABLE IF NOT EXISTS Peliculas (
           id INTEGER PRIMARY KEY NOT NULL,
           nombre TEXT NOT NULL,
@@ -97,14 +120,16 @@ export class DatabaseService {
           imagen TEXT
 
         )`;
-      const user1 = `INSERT INTO Usuarios (rol, password, idDatos, apellidoPaterno, apellidoMaterno, EDAD, email, nombre) VALUES ('admin', 'admin', '1', 'admin', 'admin', '1', 'admin@admin', 'admin')`;
+      const user1 = `INSERT INTO Usuarios (rol, password, idDatos, apellidoPaterno, apellidoMaterno, EDAD, email, nombre, megustasSeries, megustasPeliculas) VALUES ('admin', 'admin', '1', 'admin', 'admin', '1', 'admin@admin', 'admin', '[]', '[]')`;
       // await this.db.execute(`DROP TABLE IF EXISTS Usuarios`);
       await this.db.execute(schema);
 
-      // await this.db.execute(user1);
+      await this.db.execute(user1);
       await this.db.execute(schema2);
       await this.db.execute(schema3);
       await this.db.execute(schema4);
+      await this.db.execute(schema5);
+      await this.db.execute(schema6);
 
       console.log('Database initialized');
       this.loadUsers();
@@ -112,6 +137,103 @@ export class DatabaseService {
       return true;
     } catch (error) {
       console.log('Error initializing database', error);
+      return false;
+    }
+  }
+  async ComentarPelicula(
+    idUsuario: string,
+    idContenido: number,
+    comentario: string
+  ) {
+    try {
+      const query = `INSERT INTO ComentariosPelicula (idUsuario, idContenido, comentarios) VALUES ('${idUsuario}', ${idContenido}, '${comentario}')`;
+      const result = await this.db.execute(query);
+      const query2 = `SELECT * FROM ComentariosPelicula WHERE idContenido=${idContenido}`;
+      const result2 = await this.db.query(query2);
+      this.GetAllComentarios();
+      this.comentarios.next(result2.values);
+      return true;
+    } catch (error) {
+      return error;
+    }
+  }
+  // GetAll comments series And peliculas
+  async GetAllComentarios() {
+    try {
+      const query = `SELECT Peliculas.nombre, ComentariosPelicula.comentarios  FROM ComentariosPelicula, Peliculas WHERE ComentariosPelicula.idContenido=Peliculas.id`;
+      const result = await this.db.query(query);
+      console.log(JSON.stringify(result.values), 'aqui');
+      this.TodosComentariosPeliculas.next(result.values);
+      if (result.values) {
+        return result.values;
+      } else {
+        return [];
+      }
+    } catch (error) {
+      return false;
+    }
+  }
+  async GetAllComentariosSeries() {
+    try {
+      const query = `SELECT Series.nombre, ComentariosSeries.comentarios FROM ComentariosSeries, Series WHERE ComentariosSeries.idContenido=Series.id`;
+      const result = await this.db.query(query);
+      console.log(JSON.stringify(result.values), 'aqui');
+      this.TodosComentariosSeries.next(result.values);
+      if (result.values) {
+        return result.values;
+      } else {
+        return [];
+      }
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async ComentarSerie(
+    idUsuario: string,
+    idContenido: number,
+    comentario: string
+  ) {
+    try {
+      const query = `INSERT INTO ComentariosSeries (idUsuario, idContenido, comentarios) VALUES ('${idUsuario}', ${idContenido}, '${comentario}')`;
+      const result = await this.db.execute(query);
+      const query2 = `SELECT * FROM ComentariosSeries WHERE idContenido=${idContenido}`;
+      const result2 = await this.db.query(query2);
+      console.log(result2.values, 'aqui');
+      this.GetAllComentariosSeries();
+      this.comentarios.next(result2.values);
+      return true;
+    } catch (error) {
+      return error;
+    }
+  }
+  async getComentariosPelicula(id: number) {
+    try {
+      const query = `SELECT * FROM ComentariosPelicula WHERE idContenido=${id}`;
+      const result = await this.db.query(query);
+      console.log(JSON.stringify(result.values), 'aqui jejej');
+      this.comentarios.next(result.values);
+      if (result.values) {
+        return result.values;
+      } else {
+        return [];
+      }
+    } catch (error) {
+      return false;
+    }
+  }
+  async getComentariosSerie(id: number) {
+    try {
+      const query = `SELECT * FROM ComentariosSeries WHERE idContenido=${id}`;
+      const result = await this.db.query(query);
+      console.log(JSON.stringify(result.values), 'aqui jejej');
+      this.comentarios.next(result.values);
+      if (result.values) {
+        return result.values;
+      } else {
+        return [];
+      }
+    } catch (error) {
       return false;
     }
   }
@@ -202,6 +324,16 @@ export class DatabaseService {
       return false;
     }
   }
+  async borrarUsuario(id: number) {
+    try {
+      const query = `DELETE FROM Usuarios WHERE id=${id}`;
+      const result = await this.db.execute(query);
+      this.loadUsers();
+      return true;
+    } catch (error) {
+      return error;
+    }
+  }
 
   // CRUD
   async EditarUsuario(nombre: string, email: string, apellidoPaterno: string) {
@@ -221,7 +353,11 @@ export class DatabaseService {
       const query = `SELECT * FROM Usuarios WHERE email='${email}' AND password='${password}'`;
 
       const result = await this.db.query(query);
-
+      if (result.values[0].rol === 'admin') {
+        this.admin.next(true);
+      } else {
+        this.admin.next(false);
+      }
       console.log(result.values);
       // console.log(result);
 
@@ -267,19 +403,10 @@ export class DatabaseService {
       const timestampHash = generateTimestampHash();
       console.log(timestampHash);
       const datos = [];
-      const query = `INSERT INTO Usuarios (rol, password, idDatos, apellidoPaterno, apellidoMaterno, EDAD, email, nombre) VALUES ('${rol}', '${password}', '${timestampHash}', '${apellidoPaterno}', '${apellidoMaterno}', '${EDAD}', '${email}', '${nombre}')`;
-      const query2 = `INSERT INTO DatosUsuarios (IdDatos, SeriesFavoritas, PeliculasFavoritas, Comentarios) VALUES ('${timestampHash}', '', '', '')`;
-      datos.push(this.db.query(query));
-      datos.push(this.db.query(query2));
-
-      const final = await Promise.all(datos);
-      if (final) {
-        this.loadUsers();
-
-        return timestampHash;
-      } else {
-        return false;
-      }
+      const query = `INSERT INTO Usuarios (rol, password, idDatos, apellidoPaterno, apellidoMaterno, EDAD, email, nombre, SeriesFavoritas, PeliculasFavoritas,megustasPeliculas, megustasSeries ) VALUES ('${rol}', '${password}', '${timestampHash}', '${apellidoPaterno}', '${apellidoMaterno}', '${EDAD}', '${email}', '${nombre}', '','', '[]', '[]')`;
+      await this.db.execute(query);
+      console.log('agregado');
+      return true;
     } catch (error) {
       return error;
     }
@@ -335,10 +462,11 @@ export class DatabaseService {
     this.loadUsers();
     return result;
   }
-  async deleteUser(id: string) {
+  async deleteUser(id: number) {
     const query = `DELETE FROM users WHERE id=${id}`;
     const result = await this.db.execute(query);
     this.loadUsers();
+    this.usuarios.next(await this.getUsuarios());
     return result;
   }
   async GetFavorites(id: string) {
@@ -352,100 +480,124 @@ export class DatabaseService {
     }
   }
   async GetFavoritesSeries(id: string, tipo: string) {
-    try {
-      const query = `SELECT * FROM DatosUsuarios WHERE IdDatos='${id}'`;
-      const result = await this.db.query(query);
-      console.log(result.values, 'aqui');
-      if (tipo === 'series') {
-        if (result.values) return result.values[0].SeriesFavoritas;
-      } else {
-        if (result.values) return result.values[0].PeliculasFavoritas;
-      }
-    } catch (error) {
-      return false;
+    const query = `SELECT megustasSeries FROM Usuarios WHERE email='${id}'`;
+    const result = await this.db.query(query);
+    console.log(result.values, 'aqui');
+    if (
+      result.values[0].megustasSeries === '' ||
+      !result.values[0].megustasSeries
+    ) {
+      return [];
+    } else {
+      return JSON.parse(result.values[0].megustasSeries);
     }
   }
   async AddFavoritesSeries(id: string, series: string, tipo: string) {
     //  NOT OVERWRITE
-    const query = `SELECT * FROM DatosUsuarios WHERE IdDatos='${id}'`;
-    const result = await this.db.query(query);
-    console.log(JSON.stringify(result.values), 'aqui');
-    if (result.values) {
-      if (tipo === 'series') {
-        if (result.values[0].SeriesFavoritas === '') {
-          const query2 = `UPDATE DatosUsuarios SET SeriesFavoritas="[]" WHERE IdDatos="${id}"`;
-          const result2 = await this.db.query(query2);
-        } else {
-          const seriesFavoritas = JSON.parse(result.values[0].SeriesFavoritas);
-          seriesFavoritas.push(series);
-          const query2 =
-            'UPDATE DatosUsuarios SET SeriesFavoritas=? WHERE IdDatos=?';
-          const result2 = await this.db.query(query2, [
-            JSON.stringify(seriesFavoritas),
-            id,
-          ]);
-        }
-      }
-      if (tipo === 'peliculas') {
-        if (result.values[0].PeliculasFavoritas === '') {
-          const query2 = `UPDATE DatosUsuarios SET PeliculasFavoritas="[]" WHERE IdDatos="${id}"`;
-          const result2 = await this.db.query(query2);
-        } else {
-          const seriesFavoritas = JSON.parse(
-            result.values[0].PeliculasFavoritas
-          );
-          seriesFavoritas.push(series);
-          const query2 =
-            'UPDATE DatosUsuarios SET PeliculasFavoritas=? WHERE IdDatos=?';
-          const result2 = await this.db.query(query2, [
-            JSON.stringify(seriesFavoritas),
-            id,
-          ]);
-        }
-      }
-
-      return true;
+    console.log('ASDNSAHJDBJASJH ACACAC');
+    // console.log(id);
+    const query1 = `SELECT megustasSeries FROM Usuarios WHERE email='${id}'`;
+    const result1 = await this.db.query(query1);
+    console.log(JSON.parse(result1.values[0].megustasSeries), 'aqui');
+    console.log(result1.values);
+    if (result1.values[0].megustasSeries.length === 0) {
+      console.log('ENTRO AQUI');
     } else {
-      return false;
+      console.log('ENTRO AQUI 2');
+      let favs = JSON.stringify([series]);
+      const query2 = `UPDATE Usuarios SET megustasSeries='${favs}' WHERE email='${id}'`;
+      const result2 = await this.db.query(query2);
+      const query3 = `SELECT megustasSeries FROM Usuarios WHERE email='${id}'`;
+      const result3 = await this.db.query(query3);
+      this.megustasSeries.next(JSON.parse(result3.values[0].megustasSeries));
     }
+  }
+  async AddFavoritesPeliculas(id: string, series: string, tipo: string) {
+    //  NOT OVERWRITE
+    console.log('ASDNSAHJDBJASJH ACACAC');
+    // console.log(id);
+    const query1 = `SELECT megustasPeliculas FROM Usuarios WHERE email='${id}'`;
+    const result1 = await this.db.query(query1);
+    console.log(JSON.parse(result1.values[0].megustasPeliculas), 'aqui');
+    if (result1.values[0].megustasPeliculas) {
+      let favs = JSON.stringify([series]);
+      const query2 = `UPDATE Usuarios SET megustasPeliculas='${favs}' WHERE email='${id}'`;
+      const result2 = await this.db.query(query2);
+      const query3 = `SELECT megustasPeliculas FROM Usuarios WHERE email='${id}'`;
+      const result3 = await this.db.query(query3);
+      this.megustasPeliculas.next(
+        JSON.parse(result3.values[0].megustasPeliculas)
+      );
+    }
+    // else {
+    //   console.log(JSON.parse(result1.values[0].megustasPeliculas), 'aqui');
+    //   console.log(result1.values);
+    //   if (result1.values[0].megustasPeliculas.length === 0) {
+    //     console.log('ENTRO AQUI');
+    //   } else {
+    //     console.log('ENTRO AQUI 2');
+    //     let favs = JSON.stringify([series]);
+    //     const query2 = `UPDATE Usuarios SET megustasPeliculas='${favs}' WHERE email='${id}'`;
+    //     const result2 = await this.db.query(query2);
+    //     const query3 = `SELECT megustasPeliculas FROM Usuarios WHERE email='${id}'`;
+    //     const result3 = await this.db.query(query3);
+    //     this.megustasPeliculas.next(
+    //       JSON.parse(result3.values[0].megustasPeliculas)
+    //     );
+    //   }
+    // }
   }
   async DeleteFavoritesSeries(id: string, series: string, tipo: string) {
-    if (tipo === 'series') {
-      const query = `SELECT * FROM DatosUsuarios WHERE IdDatos='${id}'`;
-      const result = await this.db.query(query);
-      console.log(JSON.stringify(result.values), 'aqui');
-      if (result.values) {
-        const seriesFavoritas = JSON.parse(result.values[0].SeriesFavoritas);
-        seriesFavoritas.splice(seriesFavoritas.indexOf(series), 1);
-        const query2 =
-          'UPDATE DatosUsuarios SET SeriesFavoritas=? WHERE IdDatos=?';
-        const result2 = await this.db.query(query2, [
-          JSON.stringify(seriesFavoritas),
-          id,
-        ]);
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      const query = `SELECT * FROM DatosUsuarios WHERE IdDatos='${id}'`;
-      const result = await this.db.query(query);
-      console.log(JSON.stringify(result.values), 'aqui');
-      if (result.values) {
-        const seriesFavoritas = JSON.parse(result.values[0].PeliculasFavoritas);
-        seriesFavoritas.splice(seriesFavoritas.indexOf(series), 1);
-        const query2 =
-          'UPDATE DatosUsuarios SET PeliculasFavoritas=? WHERE IdDatos=?';
-        const result2 = await this.db.query(query2, [
-          JSON.stringify(seriesFavoritas),
-          id,
-        ]);
-        return true;
-      } else {
-        return false;
-      }
+    const query1 = `SELECT megustasSeries FROM Usuarios WHERE email='${id}'`;
+    const result1 = await this.db.query(query1);
+    console.log(JSON.stringify(result1.values[0]), 'tamos');
+    if (result1.values[0].megustasSeries.includes(series)) {
+      console.log('acaaa');
+      // remove series form array
+      const seriesFavoritas = JSON.parse(result1.values[0].megustasSeries);
+      console.log(seriesFavoritas, 'favs');
+      seriesFavoritas.splice(seriesFavoritas.indexOf(series), 1);
+      console.log(seriesFavoritas, 'tamossss');
+      const query2 = `UPDATE Usuarios SET megustasSeries='${JSON.stringify(
+        seriesFavoritas
+      )}' WHERE email='${id}'`;
+      console.log(seriesFavoritas, 'favs');
+      const result2 = await this.db.query(query2);
+      this.megustasSeries.next(seriesFavoritas);
     }
   }
+  async DeleteFavoritesPeliculas(id: string, series: string, tipo: string) {
+    const query1 = `SELECT megustasPeliculas FROM Usuarios WHERE email='${id}'`;
+    const result1 = await this.db.query(query1);
+    console.log(JSON.stringify(result1.values[0]), 'tamos');
+    if (result1.values[0].megustasPeliculas.includes(series)) {
+      console.log('acaaa');
+      // remove series form array
+      const seriesFavoritas = JSON.parse(result1.values[0].megustasPeliculas);
+      console.log(seriesFavoritas, 'favs');
+      seriesFavoritas.splice(seriesFavoritas.indexOf(series), 1);
+      console.log(seriesFavoritas, 'tamossss');
+      const query2 = `UPDATE Usuarios SET megustasPeliculas='${JSON.stringify(
+        seriesFavoritas
+      )}' WHERE email='${id}'`;
+      console.log(seriesFavoritas, 'favs');
+      const result2 = await this.db.query(query2);
+      this.megustasPeliculas.next(seriesFavoritas);
+    }
+  }
+  async getMegustas(id: string) {
+    const query = `SELECT megustasSeries FROM Usuarios WHERE email='${id}'`;
+    const result = await this.db.query(query);
+    console.log(result.values, 'aqui');
+    if (result.values) return JSON.parse(result.values[0].megustasSeries);
+  }
+  async getMegustasPeliculas(id: string) {
+    const query = `SELECT megustasPeliculas FROM Usuarios WHERE email='${id}'`;
+    const result = await this.db.query(query);
+    console.log(result.values, 'aqui');
+    if (result.values) return JSON.parse(result.values[0].megustasPeliculas);
+  }
+
   // getUser by email
   async getUser(email: string) {
     const query = `SELECT * FROM Usuarios WHERE email='${email}'`;
@@ -457,5 +609,18 @@ export class DatabaseService {
   getUsers() {
     console.log(this.user);
     return this.user;
+  }
+
+  async getSeriebyId(id: number) {
+    const query = `SELECT * FROM Series WHERE id=${id}`;
+    const result = await this.db.query(query);
+    console.log(result.values[0], 'aqui');
+    return result.values[0];
+  }
+  async getPeliculasbyId(id: number) {
+    const query = `SELECT * FROM Peliculas WHERE id=${id}`;
+    const result = await this.db.query(query);
+    console.log(result.values[0], 'aqui');
+    return result.values[0];
   }
 }

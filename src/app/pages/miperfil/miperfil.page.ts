@@ -35,6 +35,7 @@ export class MiperfilPage implements OnInit {
       // this.apellido = resp.apellidoPaterno;
       // this.correo = resp.email;
       this.descripcion = resp.desc;
+      this.imagenCapturada = resp.imagen;
       // // this.genero = resp.genero;
       this.series = resp.SeriesFavoritas;
       this.peliculas = resp.PeliculasFavoritas;
@@ -50,6 +51,7 @@ export class MiperfilPage implements OnInit {
         this.apellido = resp.apellidoPaterno;
         this.correo = resp.email;
         this.descripcion = resp.desc;
+        this.imagenCapturada = resp.imagen;
         // this.genero = resp.genero;
         this.series = resp.SeriesFavoritas;
         this.peliculas = resp.PeliculasFavoritas;
