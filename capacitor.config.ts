@@ -5,8 +5,38 @@ const config: CapacitorConfig = {
   appName: 'fanaticsFilm',
   webDir: 'www',
   server: {
-    androidScheme: 'https'
-  }
+    androidScheme: 'https',
+  },
+  plugins: {
+    BiometricPlugin: {
+      packageName: 'com.example.mybiometricapp',
+      permissions: [
+        {
+          name: 'android.permission.USE_BIOMETRIC',
+          reason: 'We need biometric authentication for a secure login.',
+        },
+      ],
+    },
+    CapacitorSQLite: {
+      iosDatabaseLocation: 'Library/CapacitorDatabase',
+      iosIsEncryption: true,
+      iosKeychainPrefix: 'angular-sqlite-app-starter',
+      iosBiometric: {
+        biometricAuth: false,
+        biometricTitle: 'Biometric login for capacitor sqlite',
+      },
+      androidIsEncryption: true,
+      androidBiometric: {
+        biometricAuth: false,
+        biometricTitle: 'Biometric login for capacitor sqlite',
+        biometricSubTitle: 'Log in using your biometric',
+      },
+      electronIsEncryption: true,
+      electronWindowsLocation: 'C:\\ProgramData\\CapacitorDatabases',
+      electronMacLocation: '/Volumes/Development_Lacie/Development/Databases',
+      electronLinuxLocation: 'Databases',
+    },
+  },
 };
 
 export default config;

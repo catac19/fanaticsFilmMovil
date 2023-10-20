@@ -1,9 +1,9 @@
-interface comentarios {
+export interface comentarios {
   usuario: number;
   desc: string;
   key: any;
 }
-interface serie {
+export interface serie {
   [rol: string]: {
     titulo: string;
     img: string;

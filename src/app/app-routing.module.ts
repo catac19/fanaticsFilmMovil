@@ -7,10 +7,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomePageModule),
   },
-  {
-    path: '*',
-    redirectTo: 'not-found',
-  },
+
   {
     path: '',
     loadChildren: () =>
@@ -102,6 +99,10 @@ const routes: Routes = [
       import('./pages/not-found/not-found.module').then(
         (m) => m.NotFoundPageModule
       ),
+  },
+  {
+    path: '**',
+    redirectTo: 'not-found',
   },
 ];
 

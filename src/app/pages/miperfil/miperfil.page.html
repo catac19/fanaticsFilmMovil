@@ -19,7 +19,7 @@
 
   <ion-card class="perfil-card">
     <div class="perfil-image-container">
-      <ion-img class="perfil-image" src="/assets/icon/shrek.jpg"></ion-img>
+      <ion-img class="perfil-image" [src]="imagenCapturada" *ngIf="imagenCapturada"></ion-img>
     </div>
     <ion-card-content>
 <!--       <ion-card-header>
@@ -31,7 +31,7 @@
         <ion-item>
           <ion-label>
             Descripción personal:
-            <p class="perfil-info">Soy un amante del cine y las series. Siempre estoy buscando nuevas recomendaciones.</p>
+            <p class="perfil-info">{{descripcion}}</p>
           </ion-label>
         </ion-item>
         <ion-item>
@@ -43,13 +43,13 @@
         <ion-item>
           <ion-label>
             Series Favoritas:
-            <p class="perfil-info">Stranger Things, Game of Thrones, Breaking Bad</p>
+            <p class="perfil-info">{{series}}</p>
           </ion-label>
         </ion-item>
         <ion-item>
           <ion-label>
             Películas Favoritas:
-            <p class="perfil-info">The Dark Knight, Inception, Avengers: Endgame</p>
+            <p class="perfil-info">{{peliculas}}</p>
           </ion-label>
         </ion-item>
       </ion-list>

@@ -23,7 +23,7 @@
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle >
-          <ion-item [routerLink]="['/reportados']" class="fondo" style="margin-bottom: 2%;">
+          <ion-item *ngIf="admin" [routerLink]="['/reportados']" class="fondo" style="margin-bottom: 2%;">
             <ion-icon slot="start" name="skull-outline" style="color: white;"></ion-icon>
             <ion-label style="color: white;">
               Reportes
@@ -31,7 +31,7 @@
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle >
-          <ion-item [routerLink]="['/peliculasadmin']" class="fondo" style="margin-bottom: 2%;">
+          <ion-item *ngIf="admin" [routerLink]="['/peliculasadmin']" class="fondo" style="margin-bottom: 2%;">
             <ion-icon slot="start" name="duplicate-outline" style="color: white;"></ion-icon>
             <ion-label style="color: white;">
               Subir Serie/Pelicula
@@ -42,7 +42,7 @@
     <footer>
       <ion-toolbar class="fondo">
         <ion-menu-toggle >
-          <ion-item [routerLink]="['/iniciosesion']" class="fondo" style="margin-bottom: 2%;">
+          <ion-item (click)="logout()" class="fondo" style="margin-bottom: 2%;">
             <ion-icon slot="start" name="lock-closed-outline" style="color: white;"></ion-icon>
             <ion-label style="color: white;">
               Cerrar Sesión

@@ -8,15 +8,23 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class NavegacionComponent implements OnInit {
   routerEvents: any;
-  mostrar: boolean = true;
-  Rutas = ['/', '/registrosesion', '/homeadmin', '/peliculasadmin', '/reportes'];
+  mostrar: boolean = false;
+  Rutas = ['/registrosesion', '/homeadmin', '/peliculasadmin', '/reportes'];
   constructor(private router: Router) {
     this.routerEvents = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         console.log(event.url);
-        console.log(this.Rutas.includes(event.url), 'aca');
-        if (!this.Rutas.includes(event.url)) {
+        // if (event.url === undefined) {
+        //   this.mostrar = false;
+        // }
+        if (
+          event.url === '/iniciosesion' ||
+          event.url === '/' ||
+          event.url === '/registrosesion'
+        ) {
           console.log(['acaca']);
+          this.mostrar = false;
+        } else {
           this.mostrar = true;
         }
         // Prints the current route

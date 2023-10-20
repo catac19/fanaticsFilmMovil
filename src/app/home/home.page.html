@@ -26,22 +26,31 @@
   </swiper-container>
 
   <h2 style="color: aliceblue; margin-left: 3%;">Peliculas</h2>
+  <h1 *ngIf="!havePeliculas" style="color: white; padding: 10px;" >No hay peliculas</h1>
+
   <div class="scroll-container" id="peliculasSemana">
-    <div *ngFor="let item of keysPeliculas()">
+    <div *ngFor="let item of peliculas">
       <ion-card class="list-inline-item" >
+
         <a [routerLink]="['/peliculas/'+item]"> <!-- Cambio aquí -->
-          <img src={{TodasPeliculas[item].banner}} alt="Póster 1" style="max-width: 130px; height: auto;">
+          <!-- <img src={{TodasPeliculas[item].banner}} alt="Póster 1" style="max-width: 130px; height: auto;"> -->
         </a>
       </ion-card>
     </div>
    
   </div>
   <h2 style="color: aliceblue; margin-left: 3%;">Series</h2>
+  <h1 *ngIf="!haveSeries" style="color: white; padding: 10px;" >No hay series</h1>
+
   <div class="scroll-container" >
-    <div *ngFor="let item of keysSeries()">
+    <div *ngFor="let item of series">
       <ion-card class="list-inline-item" >
-        <a [routerLink]="['/serie/'+item]"> <!-- Cambio aquí -->
-          <img src={{TodasSeries[item].banner}} alt="Póster 1" style="max-width: 130px; height: auto;">
+        <a [routerLink]="['/serie/'+item]">
+          <div class="swiper-zoom-container">
+            <img [src]="item.imagen" />
+          </div>
+           <!-- Cambio aquí -->
+          <!-- <img src={{TodasSeries[item].banner}} alt="Póster 1" style="max-width: 130px; height: auto;"> -->
         </a>
       </ion-card>
     </div>
@@ -64,6 +73,7 @@
     <ion-card class="list-inline-item" style="margin-left: 1%;">
         <img src="/assets/icon/estreno5.jpg" alt="estreno" style="max-width: 130px; height: auto;">
     </ion-card>
+   
   </div>
 
 </ion-content>

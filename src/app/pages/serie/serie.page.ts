@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router  } from '@angular/router';
-import { Series } from '../../assets/series';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Series, serie } from '../../assets/series';
 @Component({
   selector: 'app-serie',
   templateUrl: './serie.page.html',
@@ -11,6 +11,7 @@ export class SeriePage implements OnInit {
   titulo: string = '';
   desc: string = '';
   img: string = '';
+  serie: serie | undefined;
   comentarios!: Array<any>;
   constructor(private route: ActivatedRoute, private router: Router) {}
   async likeButton() {}
@@ -18,7 +19,7 @@ export class SeriePage implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       const id = params['id'];
-      const { titulo, img, desc, comentarios } = Series[id];
+      const { titulo, img, desc, banner, comentarios } = Series[id];
       this.titulo = titulo;
       this.desc = desc;
       this.img = img;
