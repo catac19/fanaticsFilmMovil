@@ -17,8 +17,8 @@ export class PeliculasadminPage implements OnInit {
   ) {
     this.formulario = this.formBuilder.group({
       // ... (otros campos del formulario)
-      titulo: ['buenas', [Validators.required]],
-      descripcion: ['prueba', [Validators.required]],
+      titulo: ['Pelicula', [Validators.required]],
+      descripcion: ['Descripcion', [Validators.required]],
       categoria: ['1', [Validators.required]],
       foto: [null],
     });

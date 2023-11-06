@@ -30,7 +30,7 @@ export class SeriePage implements OnInit {
       if (params['imagen'].includes('fakepath')) {
         let imagen = params['imagen'].replace('C:\\fakepath\\', '');
         this.img =
-          'http://192.168.1.86:8100/_capacitor_file_/storage/emulated/0/Download/' +
+          'http://172.20.10.4:8100/_capacitor_file_/storage/emulated/0/Download/' +
           imagen;
       } else {
         this.img = params['imagen'];
@@ -55,7 +55,7 @@ export class SeriePage implements OnInit {
       if (params['imagen'].includes('fakepath')) {
         let imagen = params['imagen'].replace('C:\\fakepath\\', '');
         this.img =
-          'http://192.168.1.86:8100/_capacitor_file_/storage/emulated/0/Download/' +
+          'http://172.20.10.4:8100/_capacitor_file_/storage/emulated/0/Download/' +
           imagen;
       } else {
         this.img = params['imagen'];

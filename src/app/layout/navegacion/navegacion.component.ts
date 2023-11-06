@@ -14,7 +14,7 @@ export class NavegacionComponent implements OnInit {
     '/homeadmin',
     '/peliculasadmin',
     '/reportes',
-    '/inicio',
+    '/iniciar',
   ];
   constructor(private router: Router) {
     this.routerEvents = this.router.events.subscribe((event: any) => {
@@ -26,7 +26,8 @@ export class NavegacionComponent implements OnInit {
         if (
           event.url === '/iniciosesion' ||
           event.url === '/' ||
-          event.url === '/registrosesion'
+          event.url === '/registrosesion' ||
+          event.url === '/iniciar'
         ) {
           console.log(['acaca']);
           this.mostrar = false;

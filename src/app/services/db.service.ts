@@ -21,7 +21,7 @@ function hashCode(s: string): string {
   return h.toString(16);
 }
 
-const DB_USERS = 'myuserdb36';
+const DB_USERS = 'myuserdb37';
 
 export interface User {
   id: number;
@@ -123,8 +123,13 @@ export class DatabaseService {
       const user1 = `INSERT INTO Usuarios (rol, password, idDatos, apellidoPaterno, apellidoMaterno, EDAD, email, nombre, megustasSeries, megustasPeliculas) VALUES ('admin', 'admin', '1', 'admin', 'admin', '1', 'admin@admin', 'admin', '[]', '[]')`;
       // await this.db.execute(`DROP TABLE IF EXISTS Usuarios`);
       await this.db.execute(schema);
-
-      await this.db.execute(user1);
+      // CHECK IF ADMIN EXISTS
+      const query = `SELECT * FROM Usuarios`;
+      const result = await this.db.query(query);
+      console.log(result.values, 'aqui');
+      if (result.values.length === 0) {
+        await this.db.execute(user1);
+      }
       await this.db.execute(schema2);
       await this.db.execute(schema3);
       await this.db.execute(schema4);
