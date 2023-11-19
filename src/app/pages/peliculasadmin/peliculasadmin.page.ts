@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
+<<<<<<< HEAD
 import { DatabaseService } from 'src/app/services/db.service';
+=======
+import { Camera, CameraResultType, CameraSource, PermissionStatus } from '@capacitor/camera';
+
+>>>>>>> 487e86e12055432b588828b3710dd1b2595cb5fd
 @Component({
   selector: 'app-peliculasadmin',
   templateUrl: './peliculasadmin.page.html',
@@ -9,6 +14,7 @@ import { DatabaseService } from 'src/app/services/db.service';
 })
 export class PeliculasadminPage implements OnInit {
   formulario: FormGroup;
+  imagenCapturada: string | undefined = undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,8 +29,44 @@ export class PeliculasadminPage implements OnInit {
       foto: [null],
     });
   }
+<<<<<<< HEAD
 
   ngOnInit() {}
+=======
+  loadPhoto = async () => {
+    const permissionStatus = await this.checkAndRequestPermissions();
+  
+    if (permissionStatus.camera === 'granted' || permissionStatus.photos === 'granted') {
+      try {
+        const image = await Camera.getPhoto({
+          quality: 90,
+          allowEditing: false,
+          resultType: CameraResultType.Uri,
+          source: CameraSource.Photos
+        });
+  
+        const imageUrl = image.webPath;
+        this.imagenCapturada = imageUrl;
+      } catch (error) {
+        console.error("Error loading image", error);
+      }
+    } else {
+      console.error("Permissions are not granted");
+    }
+  };
+  
+   checkAndRequestPermissions = async () => {
+    const status = await Camera.checkPermissions();
+    if (status.camera === 'prompt' || status.photos === 'prompt') {
+      const permissionStatus = await Camera.requestPermissions();
+      return permissionStatus;
+    }
+    return status;
+  };
+  
+  ngOnInit() {
+  }
+>>>>>>> 487e86e12055432b588828b3710dd1b2595cb5fd
 
   onSubmit() {
     // Lógica para manejar el envío del formulario

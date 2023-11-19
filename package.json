@@ -38,10 +38,14 @@
     "@ionic-native/sqlite": "^5.36.0",
     "@ionic-native/sqlite-porter": "^5.36.0",
     "@ionic/angular": "^7.0.0",
+<<<<<<< HEAD
     "@ionic/storage": "^4.0.0",
     "@ionic/storage-angular": "^4.0.0",
     "capacitor-native-biometric": "^4.2.2",
     "cordova-sqlite-storage": "^6.1.0",
+=======
+    "ionic": "^4.1.2",
+>>>>>>> 487e86e12055432b588828b3710dd1b2595cb5fd
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "swiper": "^10.2.0",

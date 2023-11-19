@@ -41,8 +41,10 @@
                 </ion-item>
 
                 <ion-item>
-                  <ion-label position="stacked">Subir Imagen:</ion-label>
-                  <ion-input type="file" formControlName="foto" (change)="onFileSelected($event)"></ion-input>
+                  <div class="perfil-image-container">
+                    <ion-img class="" [src]="imagenCapturada" *ngIf="imagenCapturada" style="max-width: 130px; height: auto;" ></ion-img>
+                    <ion-button class="subir-foto" fill="clear" (click)="loadPhoto()">Subir Imagen</ion-button>
+                  </div>
                 </ion-item>
 
                 <ion-button expand="full" color="dark" type="submit">Subir</ion-button>
